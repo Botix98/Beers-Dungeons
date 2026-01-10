@@ -18,8 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Juego.unity
     guid: 5750d73df9ee75940b76792d8c0da8b4
   - enabled: 1
-    path: Assets/Scenes/pantalla de inicio.unity
-    guid: c1c2aab4c468b1643a83a293aac10a94
+    path: Assets/Scenes/MenuPrincipal.unity
+    guid: 849be0890c1727440beed344fa386bb6
   - enabled: 1
     path: Assets/Scenes/Taberna.unity
     guid: 5881e52c090cb2744bdecb15a7597094
