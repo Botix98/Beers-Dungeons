@@ -2985,8 +2985,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -51.72, y: 0.45002937}
-  m_SizeDelta: {x: 168.84, y: 188.05}
+  m_AnchoredPosition: {x: -34.859974, y: 0.45002937}
+  m_SizeDelta: {x: 202.56, y: 188.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &985955674
 MonoBehaviour:
@@ -3040,7 +3040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
   m_Padding:
     m_Left: 45
-    m_Right: 0
+    m_Right: 30
     m_Top: 35
     m_Bottom: 0
   m_ChildAlignment: 0
@@ -5623,8 +5623,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2014751151}
   - component: {fileID: 2014751154}
-  - component: {fileID: 2014751152}
   - component: {fileID: 2014751153}
+  - component: {fileID: 2014751152}
   - component: {fileID: 2014751155}
   m_Layer: 5
   m_Name: BtnCambiarObjetos
@@ -5774,7 +5774,7 @@ MonoBehaviour:
   - {fileID: 8824076712984985043, guid: c735309b6c2198b46884d74b1f81bbcc, type: 3}
   - {fileID: 5864409445038684689, guid: 7e8cb274e857e424d86558e95bc95fb6, type: 3}
   grid: {fileID: 985955672}
-  monedas: {fileID: 1547813939}
+  monedas: {fileID: 0}
   infoObjeto: {fileID: 56172114}
   infoSprite: {fileID: 261530645}
   infoNombre: {fileID: 1625191161}
