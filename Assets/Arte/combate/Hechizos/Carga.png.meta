@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a538c79acd8de0841a3739b63c9a9327
+guid: 8fed5115789fcd549a740eb3fb393948
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6549266242706384939
-    second: Carga_0
+      213: -9209733390490981170
+    second: Carga 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Carga_0
+      name: Carga 1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2048
-        height: 2048
+        x: 44
+        y: 35
+        width: 1929
+        height: 1997
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5d757004d055c15a0800000000000000
-      internalID: -6549266242706384939
+      spriteID: ecc2bbfc644703080800000000000000
+      internalID: -9209733390490981170
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Carga_0: -6549266242706384939
+      Carga 1_0: -9209733390490981170
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

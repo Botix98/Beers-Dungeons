@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d5be64ab3b7d6d7439194014027e3597
+guid: 5f5fb07ddb28d684ca90dfb0d5758e8b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1180078994528092818
-    second: EscudoDobleFilo_0
+      213: 2278672304099556851
+    second: EscudoDobleFilo 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EscudoDobleFilo_0
+      name: EscudoDobleFilo 1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2048
-        height: 2048
+        x: 49
+        y: 40
+        width: 1930
+        height: 1993
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2924fbbd79b706010800000000000000
-      internalID: 1180078994528092818
+      spriteID: 3fdff5d33687f9f10800000000000000
+      internalID: 2278672304099556851
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      EscudoDobleFilo_0: 1180078994528092818
+      EscudoDobleFilo 1_0: 2278672304099556851
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

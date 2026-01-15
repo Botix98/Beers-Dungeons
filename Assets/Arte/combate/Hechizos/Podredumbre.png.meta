@@ -5,15 +5,6 @@ TextureImporter:
   - first:
       213: 4220440248129220589
     second: Podredumbre_0
-  - first:
-      213: -1756215623884737695
-    second: Podredumbre_1
-  - first:
-      213: -3298444155556863034
-    second: Podredumbre_2
-  - first:
-      213: 8448786418575024911
-    second: Podredumbre_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -138,10 +129,10 @@ TextureImporter:
       name: Podredumbre_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2043
-        width: 186
-        height: 5
+        x: 38
+        y: 22
+        width: 1954
+        height: 2014
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,72 +143,6 @@ TextureImporter:
       bones: []
       spriteID: defe0897b04029a30800000000000000
       internalID: 4220440248129220589
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Podredumbre_1
-      rect:
-        serializedVersion: 2
-        x: 187
-        y: 2043
-        width: 1861
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 163fb55e13ba0a7e0800000000000000
-      internalID: -1756215623884737695
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Podredumbre_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 118
-        width: 5
-        height: 1924
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6c3e19434829932d0800000000000000
-      internalID: -3298444155556863034
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Podredumbre_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2001
-        height: 2036
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f032f4eeb7e104570800000000000000
-      internalID: 8448786418575024911
       vertices: []
       indices: 
       edges: []
@@ -237,9 +162,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Podredumbre_0: 4220440248129220589
-      Podredumbre_1: -1756215623884737695
-      Podredumbre_2: -3298444155556863034
-      Podredumbre_3: 8448786418575024911
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

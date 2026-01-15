@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7e7aedbc6d573f74ebd76647ccd9cf8c
+guid: 0e34afa1c2a5412498dd0a6cb7525a74
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2720597166628222246
-    second: SolSagrado_0
+      213: 923842640084417274
+    second: SolSagrado 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SolSagrado_0
+      name: SolSagrado 1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2048
-        height: 2048
+        x: 43
+        y: 31
+        width: 1931
+        height: 2002
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6253fcd65b081c520800000000000000
-      internalID: 2720597166628222246
+      spriteID: afa37968cf522dc00800000000000000
+      internalID: 923842640084417274
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SolSagrado_0: 2720597166628222246
+      SolSagrado 1_0: 923842640084417274
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

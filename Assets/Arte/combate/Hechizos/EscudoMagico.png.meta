@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 99d2b750bf6da354fb2f3a376b3fb4e7
+guid: f3fc14fe2747fe04486ecfa955a8ef14
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -314265657206995585
-    second: EscudoMagico_0
+      213: -6534584172185403093
+    second: EscudoMagico 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EscudoMagico_0
+      name: EscudoMagico 1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2048
-        height: 2048
+        x: 52
+        y: 40
+        width: 1933
+        height: 1993
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f758211cc0183abf0800000000000000
-      internalID: -314265657206995585
+      spriteID: b21cffd215e7055a0800000000000000
+      internalID: -6534584172185403093
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      EscudoMagico_0: -314265657206995585
+      EscudoMagico 1_0: -6534584172185403093
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
