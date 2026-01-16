@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 5056352075918592076}
   - component: {fileID: 9075420562387145461}
   - component: {fileID: 6936713547014975963}
+  - component: {fileID: 5875863740441646218}
   m_Layer: 5
   m_Name: EscudoMagico
   m_TagString: Untagged
@@ -306,3 +307,16 @@ MonoBehaviour:
   espacios: 2
   Curacion: 0
   Reduccion: 0.7
+--- !u!114 &5875863740441646218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6704295037538039682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e69d10da604b748bde1f6f00e57120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
+  parentAfterDrag: {fileID: 0}

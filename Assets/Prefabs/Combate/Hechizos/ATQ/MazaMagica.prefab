@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 4152692708748473510}
   - component: {fileID: 1154204810267391792}
   - component: {fileID: 5889193191523154708}
+  - component: {fileID: 992148695732780395}
   m_Layer: 5
   m_Name: MazaMagica
   m_TagString: Untagged
@@ -171,6 +172,19 @@ MonoBehaviour:
   "da\xF1o": 0
   golpear: 1
   multiplicador: 1.2
+--- !u!114 &992148695732780395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6582142198260395889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e69d10da604b748bde1f6f00e57120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
+  parentAfterDrag: {fileID: 0}
 --- !u!1 &7120322333452486712
 GameObject:
   m_ObjectHideFlags: 0

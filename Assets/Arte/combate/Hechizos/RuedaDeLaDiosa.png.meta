@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a3d8b734e2fbfb5438ce466c1d8cc767
+guid: 5fffe4834b62fee438728dab9b1f09dd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1391631781099685829
-    second: RuedaDeLaDiosa_0
+      213: -3759075804513373326
+    second: RuedaDeLaDiosa 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RuedaDeLaDiosa_0
+      name: RuedaDeLaDiosa 1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2048
-        height: 2048
+        x: 53
+        y: 40
+        width: 1930
+        height: 1994
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5c747925bb1105310800000000000000
-      internalID: 1391631781099685829
+      spriteID: 273f634e87415dbc0800000000000000
+      internalID: -3759075804513373326
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      RuedaDeLaDiosa_0: 1391631781099685829
+      RuedaDeLaDiosa 1_0: -3759075804513373326
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

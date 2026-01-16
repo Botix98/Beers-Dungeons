@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 2873258590747612895}
   - component: {fileID: 8695145354357382291}
   - component: {fileID: 6715250887817795405}
+  - component: {fileID: 2209919188462417350}
   m_Layer: 5
   m_Name: EscudoDeDobleFilo
   m_TagString: Untagged
@@ -306,3 +307,16 @@ MonoBehaviour:
   espacios: 3
   Curacion: 0
   Reduccion: 0.7
+--- !u!114 &2209919188462417350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982487478716850156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e69d10da604b748bde1f6f00e57120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
+  parentAfterDrag: {fileID: 0}

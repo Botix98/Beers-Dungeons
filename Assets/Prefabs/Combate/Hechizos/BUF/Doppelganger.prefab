@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 8072023540243706373}
   - component: {fileID: 2589041936008191918}
   - component: {fileID: 3762639528658589998}
+  - component: {fileID: 8929896531213137502}
   m_Layer: 5
   m_Name: Doppelganger
   m_TagString: Untagged
@@ -306,3 +307,16 @@ MonoBehaviour:
   espacios: 1
   elemento: 0
   golpear: 2
+--- !u!114 &8929896531213137502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4384458252542320713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e69d10da604b748bde1f6f00e57120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
+  parentAfterDrag: {fileID: 0}

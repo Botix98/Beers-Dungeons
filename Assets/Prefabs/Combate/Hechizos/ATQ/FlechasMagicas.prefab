@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 4134780482798178236}
   - component: {fileID: 4550469764660699254}
   - component: {fileID: 1086345831136546102}
+  - component: {fileID: 9132415986065621937}
   m_Layer: 5
   m_Name: FlechasMagicas
   m_TagString: Untagged
@@ -233,6 +234,19 @@ MonoBehaviour:
   "da\xF1o": 0
   golpear: 2
   multiplicador: 0.7
+--- !u!114 &9132415986065621937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2649066095646257803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e69d10da604b748bde1f6f00e57120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
+  parentAfterDrag: {fileID: 0}
 --- !u!1 &4370969430969872286
 GameObject:
   m_ObjectHideFlags: 0

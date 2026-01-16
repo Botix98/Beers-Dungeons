@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 8853822448739900579}
   - component: {fileID: 9203092186300475848}
   - component: {fileID: 6162393654226196023}
+  - component: {fileID: 6593376175984803147}
   m_Layer: 5
   m_Name: SolSagrado
   m_TagString: Untagged
@@ -169,6 +170,19 @@ MonoBehaviour:
   espacios: 6
   Curacion: 0.3
   Reduccion: 0
+--- !u!114 &6593376175984803147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5864409445038684689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e69d10da604b748bde1f6f00e57120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
+  parentAfterDrag: {fileID: 0}
 --- !u!1 &8212592917593409310
 GameObject:
   m_ObjectHideFlags: 0
