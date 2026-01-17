@@ -1713,7 +1713,7 @@ GameObject:
   - component: {fileID: 1551315064}
   - component: {fileID: 1551315063}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BtnIniciarSesion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1970,6 +1970,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1746506873}
   - component: {fileID: 1746506874}
+  - component: {fileID: 1746506875}
+  - component: {fileID: 1746506876}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2004,6 +2006,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecb17d60f3653b45807c77a29f49035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoginController
+  canvasJuego: {fileID: 0}
+  canvasAjustes: {fileID: 0}
+--- !u!114 &1746506875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746506872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 788e0b821b4b2f04db05369f336fbe27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoginController
+  ipUsuario: {fileID: 935729979}
+  ipContrasena: {fileID: 523184277}
+  btnIniciarSesion: {fileID: 1551315063}
+  btnCrearCuenta: {fileID: 2121806020}
+  escenaMenuPrincipal: MenuPrincipal
+--- !u!114 &1746506876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746506872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1545b358ec4fc4689150e97bcba64f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SupabaseClient
+  supabaseUrl: https://qfwyzhatszqyfilztfau.supabase.co/rest/v1
+  anonKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmd3l6aGF0c3pxeWZpbHp0ZmF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczMTMwMjIsImV4cCI6MjA4Mjg4OTAyMn0.RYHWVjeCIt5OobArbVuxsvrM_JsHpgJ-IXsud4rD0zE
 --- !u!1 &1807181336
 GameObject:
   m_ObjectHideFlags: 0
