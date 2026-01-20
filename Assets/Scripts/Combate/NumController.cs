@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class NumController : MonoBehaviour
 {
+    public static NumController Instance;
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+
     public Transform padre;
     public GameObject numPrefab;
     public Bolsa bolsa;
@@ -14,6 +22,16 @@ public class NumController : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(crearConEspera());
+    }
+
+    public void ReiniciarMano()
+    {
+        foreach (Transform hijo in padre)
+        {
+            Destroy(hijo.gameObject);
+        }
+
         StartCoroutine(crearConEspera());
     }
 

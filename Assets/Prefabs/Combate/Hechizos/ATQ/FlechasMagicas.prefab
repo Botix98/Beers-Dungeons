@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 6245780684087834111}
   - component: {fileID: 3941623196211809342}
   - component: {fileID: 7923662028901839406}
+  - component: {fileID: 7763296761825039297}
   m_Layer: 5
   m_Name: Image (3)
   m_TagString: Untagged
@@ -322,3 +323,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7763296761825039297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4370969430969872286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9dad9f947ee52479d87ab35d7ed592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NumSlot
