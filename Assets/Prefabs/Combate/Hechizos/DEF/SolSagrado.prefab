@@ -92,6 +92,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HechizoDEF
   id: 12
   espacios: 6
+  usosIniciales: 3
+  usosActuales: 0
+  textoUsos: {fileID: 4109069735725319939}
   Curacion: 0.3
   Reduccion: 0
 --- !u!114 &6593376175984803147

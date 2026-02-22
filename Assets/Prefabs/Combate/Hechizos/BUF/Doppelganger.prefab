@@ -229,6 +229,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HechizoBUF
   id: 9
   espacios: 1
+  usosIniciales: 3
+  usosActuales: 0
+  textoUsos: {fileID: 5352247422328881391}
   elemento: 0
   golpear: 2
 --- !u!114 &8929896531213137502

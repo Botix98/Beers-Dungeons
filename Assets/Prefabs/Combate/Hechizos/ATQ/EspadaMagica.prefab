@@ -181,6 +181,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HechizoATQ
   id: 1
   espacios: 1
+  usosIniciales: 3
+  usosActuales: 0
+  textoUsos: {fileID: 997566675663775425}
   elemento: 0
   "da\xF1o": 0
   golpear: 1
