@@ -233,7 +233,7 @@ MonoBehaviour:
   usosActuales: 0
   textoUsos: {fileID: 4906336337972989995}
   Curacion: 0
-  Reduccion: 0.7
+  Reduccion: 0.3
 --- !u!114 &2209919188462417350
 MonoBehaviour:
   m_ObjectHideFlags: 0

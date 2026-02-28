@@ -7,6 +7,8 @@ public class DraggableNum : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [HideInInspector] public Transform parentAfterDrag;
     private CanvasGroup canvasGroup;
 
+    public int valor;
+
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();

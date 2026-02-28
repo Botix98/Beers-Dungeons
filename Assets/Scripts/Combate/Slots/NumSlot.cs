@@ -14,6 +14,13 @@ public class NumSlot : MonoBehaviour, IDropHandler
             if (draggableNum != null)
             {
                 draggableNum.parentAfterDrag = transform;
+
+                // le pasa el daño que se le a puesto al hechizo, si no se le a puesto nada pues sera 0
+                HechizoATQ hechizo = GetComponentInParent<HechizoATQ>();
+                if (hechizo != null)
+                {
+                    hechizo.EstablecerDano(draggableNum.valor);
+                }
             }
         }
     }

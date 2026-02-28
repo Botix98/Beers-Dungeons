@@ -48,8 +48,16 @@ public class NumController : MonoBehaviour
     {
         GameObject numero = Instantiate(numPrefab, padre);
 
-        int valor = bolsa.sacar();
+        int valorBolsa = bolsa.sacar();
 
-        numero.GetComponentInChildren<TMP_Text>(true).text = valor.ToString();
+        // Poner el texto (visual)
+        numero.GetComponentInChildren<TMP_Text>(true).text = valorBolsa.ToString();
+
+        // guardo el valor
+        DraggableNum dragNum = numero.GetComponent<DraggableNum>();
+        if (dragNum != null)
+        {
+            dragNum.valor = valorBolsa;
+        }
     }
 }
