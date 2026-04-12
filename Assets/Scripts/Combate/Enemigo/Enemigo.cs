@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Enemigo : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class Enemigo : MonoBehaviour
     [Header("Interfaz UI")]
     public TMP_Text textoVida;
     public Image barraVida;
+    public Image barraVidaAmarilla;
 
     private void Start()
     {
@@ -85,11 +87,14 @@ public class Enemigo : MonoBehaviour
     {
         if (textoVida != null) textoVida.text = $"{vidaActual}/{vidaMaxima}";
 
-        // actualiza la barra de vida
         if (barraVida != null)
         {
-            // convierto a float porque el fill va de 0 a 1
             barraVida.fillAmount = (float)vidaActual / vidaMaxima;
+
+            if (barraVidaAmarilla != null && barraVidaAmarilla.fillAmount < barraVida.fillAmount)
+            {
+                barraVidaAmarilla.fillAmount = barraVida.fillAmount;
+            }
         }
     }
 
@@ -103,5 +108,29 @@ public class Enemigo : MonoBehaviour
     {
         estadosActuales.Clear();
         Debug.Log("Todos los estados del enemigo han sido eliminados.");
+    }
+
+    public void EjecutarAnimacionDano()
+    {
+        StartCoroutine(AnimarBarraAmarilla());
+    }
+
+    private IEnumerator AnimarBarraAmarilla()
+    {
+        if (barraVidaAmarilla == null || barraVida == null) yield break;
+
+        float tiempo = 0f;
+        float duracion = 0.5f;
+        float fillInicial = barraVidaAmarilla.fillAmount;
+        float fillObjetivo = barraVida.fillAmount;
+
+        while (tiempo < duracion)
+        {
+            tiempo += Time.deltaTime;
+            barraVidaAmarilla.fillAmount = Mathf.Lerp(fillInicial, fillObjetivo, tiempo / duracion);
+            yield return null;
+        }
+
+        barraVidaAmarilla.fillAmount = fillObjetivo;
     }
 }

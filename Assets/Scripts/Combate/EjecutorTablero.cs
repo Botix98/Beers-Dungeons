@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class EjecutorTablero : MonoBehaviour
 {
@@ -290,6 +291,11 @@ public class EjecutorTablero : MonoBehaviour
             enemigoActual.GenerarIntencion();
             ActualizarUIIntencion();
         }
+
+        if (jugadorActual != null) jugadorActual.EjecutarAnimacionDano();
+        if (enemigoActual != null) enemigoActual.EjecutarAnimacionDano();
+
+        yield return new WaitForSeconds(0.6f);
 
         // 4. Termina la ejecución, vuelve a la Fase 1 (Programación)
         CambiarFaseVisual(true);

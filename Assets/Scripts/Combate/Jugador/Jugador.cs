@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Jugador : MonoBehaviour
 {
@@ -14,13 +15,15 @@ public class Jugador : MonoBehaviour
 
     [Header("Interfaz UI")]
     public TMP_Text textoVida;
-
     public Image barraVida;
+    public Image barraVidaAmarilla;
 
     private void Start()
     {
         vidaActual = vidaMaxima;
         ActualizarUI();
+
+        if (barraVidaAmarilla != null) barraVidaAmarilla.fillAmount = 1f;
     }
 
     public void RecibirDano(int cantidad, elementos estadoAtaque)
@@ -79,11 +82,15 @@ public class Jugador : MonoBehaviour
     {
         if (textoVida != null) textoVida.text = $"{vidaActual}/{vidaMaxima}";
 
-        // actualiza la barra de vida
         if (barraVida != null)
         {
-            // convierto a float porque el fill va de 0 a 1
-            barraVida.fillAmount = (float)vidaActual / vidaMaxima;
+            float fillObjetivo = (float)vidaActual / vidaMaxima;
+            barraVida.fillAmount = fillObjetivo;
+
+            if (barraVidaAmarilla != null && barraVidaAmarilla.fillAmount < barraVida.fillAmount)
+            {
+                barraVidaAmarilla.fillAmount = barraVida.fillAmount;
+            }
         }
     }
 
@@ -113,5 +120,29 @@ public class Jugador : MonoBehaviour
         // Elige del 1 al 5 (se salta el 0 que es Físico)
         elementos randElem = (elementos)Random.Range(1, 6);
         AplicarEstado(randElem);
+    }
+
+    public void EjecutarAnimacionDano()
+    {
+        StartCoroutine(AnimarBarraAmarilla());
+    }
+
+    private IEnumerator AnimarBarraAmarilla()
+    {
+        if (barraVidaAmarilla == null || barraVida == null) yield break;
+
+        float tiempo = 0f;
+        float duracion = 0.5f; // Medio segundo de animación suave
+        float fillInicial = barraVidaAmarilla.fillAmount;
+        float fillObjetivo = barraVida.fillAmount;
+
+        while (tiempo < duracion)
+        {
+            tiempo += Time.deltaTime;
+            barraVidaAmarilla.fillAmount = Mathf.Lerp(fillInicial, fillObjetivo, tiempo / duracion);
+            yield return null;
+        }
+
+        barraVidaAmarilla.fillAmount = fillObjetivo;
     }
 }
