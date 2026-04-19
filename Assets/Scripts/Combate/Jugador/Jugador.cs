@@ -11,7 +11,7 @@ public class Jugador : MonoBehaviour
     public int vidaActual;
 
     [Header("Estados Alterados")]
-    public List<elementos> estadosActuales = new List<elementos>();
+    public List<EstadoAlterado> estadosActuales = new List<EstadoAlterado>();
 
     [Header("Interfaz UI")]
     public TMP_Text textoVida;
@@ -26,41 +26,81 @@ public class Jugador : MonoBehaviour
         if (barraVidaAmarilla != null) barraVidaAmarilla.fillAmount = 1f;
     }
 
+    public bool TieneEstado(elementos tipo)
+    {
+        foreach (var e in estadosActuales) if (e.tipo == tipo) return true;
+        return false;
+    }
+
     public void RecibirDano(int cantidad, elementos estadoAtaque)
     {
-        vidaActual -= cantidad;
+        // 1. Modificadores de daño (Vulnerabilidades)
+        float multiplicador = 1f;
+        if (TieneEstado(elementos.Calor)) multiplicador += 0.5f; // Recibe x1.5 de daño
+        if (TieneEstado(elementos.Electrico)) multiplicador += 1f; // Recibe x2 de daño
+
+        int danoFinal = Mathf.RoundToInt(cantidad * multiplicador);
+
+        // 2. Aplicar el daño
+        vidaActual -= danoFinal;
         if (vidaActual < 0) vidaActual = 0;
 
         ActualizarUI();
 
+        // 3. Aplicar el estado del ataque (solo si te hizo más de 0)
         if (cantidad > 0)
         {
             AplicarEstado(estadoAtaque);
         }
 
-        if (vidaActual == 0)
-        {
-            Debug.Log("El jugador ha muerto. Fin de la partida.");
-            // a futuro tengo que manejar aqui el mensaje de muerte y toda la parafernalia que pasa cuando pierdes por malito
-        }
+        if (vidaActual == 0) Debug.Log("El jugador ha muerto. Fin de la partida.");
     }
 
-    // Función para añadir el estado a la lista
     public void AplicarEstado(elementos nuevoEstado)
     {
-        // 1. El daño Físico es un golpe normal, no deja estado alterado
         if (nuevoEstado == elementos.Fisico) return;
+        if (TieneEstado(nuevoEstado)) return; // No se acumulan
 
-        // 2. Comprueba si el jugador ya tiene este estado para no repetirlo
-        if (estadosActuales.Contains(nuevoEstado))
+        int duracion = -1; // Infinito por defecto
+        if (nuevoEstado == elementos.Cortante) duracion = 3; // Cortante dura 3 turnos
+
+        estadosActuales.Add(new EstadoAlterado(nuevoEstado, duracion));
+        Debug.Log($"El jugador sufre el estado: {nuevoEstado}");
+    }
+
+    public void ProcesarEstadosAlFinalDelTurno()
+    {
+        for (int i = estadosActuales.Count - 1; i >= 0; i--)
         {
-            Debug.Log($"El jugador ya sufre de {nuevoEstado}. No se acumula.");
-            return;
-        }
+            EstadoAlterado estado = estadosActuales[i];
 
-        // Si pasa los dos filtros anteriores, se añade a la lista
-        estadosActuales.Add(nuevoEstado);
-        Debug.Log($"¡El jugador sufre el estado: {nuevoEstado}!");
+            if (estado.tipo == elementos.Calor)
+            {
+                int danoCalor = Mathf.Max(1, Mathf.RoundToInt(vidaMaxima * 0.05f));
+                RecibirDano(danoCalor, elementos.Fisico); // Se pasa "Físico" para que no rebote
+            }
+            else if (estado.tipo == elementos.Toxina)
+            {
+                // La toxina empieza en 2% y se multiplica x2 cada turno
+                float multToxina = Mathf.Pow(2, estado.turnosActivo);
+                int danoToxina = Mathf.Max(1, Mathf.RoundToInt(vidaMaxima * 0.02f * multToxina));
+                RecibirDano(danoToxina, elementos.Fisico);
+            }
+            else if (estado.tipo == elementos.Cortante)
+            {
+                int danoCortante = Mathf.Max(1, Mathf.RoundToInt(vidaActual * 0.15f));
+                RecibirDano(danoCortante, elementos.Fisico);
+            }
+
+            estado.turnosActivo++;
+
+            // Restar duración y eliminar si se acaba
+            if (estado.turnosRestantes > 0)
+            {
+                estado.turnosRestantes--;
+                if (estado.turnosRestantes == 0) estadosActuales.RemoveAt(i);
+            }
+        }
     }
 
     public void Curar(int cantidad)

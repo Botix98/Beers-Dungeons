@@ -180,8 +180,8 @@ public class EjecutorTablero : MonoBehaviour
 
                             if (def.Reduccion > 0 && enemigoActual != null)
                             {
-                                enemigoActual.intencionActual = Mathf.RoundToInt(enemigoActual.intencionActual * def.Reduccion);
-                                ActualizarUIIntencion(); // El número del enemigo cambia al instante en pantalla
+                                enemigoActual.intencionBase = Mathf.RoundToInt(enemigoActual.intencionBase * def.Reduccion);
+                                enemigoActual.RecalcularIntencion();
                             }
 
                             // 2. EFECTOS ÚNICOS SEGÚN EL NOMBRE DEL HECHIZO
@@ -215,10 +215,10 @@ public class EjecutorTablero : MonoBehaviour
                                 jugadorActual.FijarVida(Mathf.RoundToInt(jugadorActual.vidaMaxima * pctParaJugador));
                                 enemigoActual.FijarVida(Mathf.RoundToInt(enemigoActual.vidaMaxima * pctParaEnemigo));
 
-                                // C) Piscina de estados (Junta los de ambos sin duplicar)
+                                // C) pool de estados (Junta los de ambos sin duplicar)
                                 List<elementos> poolEstados = new List<elementos>();
-                                foreach (var est in jugadorActual.estadosActuales) if (!poolEstados.Contains(est)) poolEstados.Add(est);
-                                foreach (var est in enemigoActual.estadosActuales) if (!poolEstados.Contains(est)) poolEstados.Add(est);
+                                foreach (var est in jugadorActual.estadosActuales) if (!poolEstados.Contains(est.tipo)) poolEstados.Add(est.tipo);
+                                foreach (var est in enemigoActual.estadosActuales) if (!poolEstados.Contains(est.tipo)) poolEstados.Add(est.tipo);
 
                                 jugadorActual.LimpiarEstados();
                                 enemigoActual.LimpiarEstados();
@@ -289,8 +289,10 @@ public class EjecutorTablero : MonoBehaviour
             // Se prepara para el siguiente turno: sube la dificultad y elige un nuevo ataque
             enemigoActual.EscalarDificultad();
             enemigoActual.GenerarIntencion();
-            ActualizarUIIntencion();
         }
+
+        if (jugadorActual != null) jugadorActual.ProcesarEstadosAlFinalDelTurno();
+        if (enemigoActual != null) enemigoActual.ProcesarEstadosAlFinalDelTurno();
 
         if (jugadorActual != null) jugadorActual.EjecutarAnimacionDano();
         if (enemigoActual != null) enemigoActual.EjecutarAnimacionDano();
@@ -304,7 +306,7 @@ public class EjecutorTablero : MonoBehaviour
         Debug.Log("Fase de resolución terminada.");
     }
 
-    private void ActualizarUIIntencion()
+    public void ActualizarUIIntencion()
     {
         if (txtIntencion != null && enemigoActual != null)
         {

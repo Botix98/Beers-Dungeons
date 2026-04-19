@@ -83,3 +83,17 @@ public class Atributos : MonoBehaviour
         ActualizarUI();
     }
 }
+[System.Serializable]
+public class EstadoAlterado
+{
+    public elementos tipo;
+    public int turnosRestantes; // Si es -1, dura infinito
+    public int turnosActivo; // Para llevar la cuenta de la Toxina
+
+    public EstadoAlterado(elementos tipo, int turnosRestantes)
+    {
+        this.tipo = tipo;
+        this.turnosRestantes = turnosRestantes;
+        this.turnosActivo = 0; // Empieza en 0
+    }
+}
