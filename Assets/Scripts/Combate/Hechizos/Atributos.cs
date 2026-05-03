@@ -26,9 +26,9 @@ public class Atributos : MonoBehaviour
     public TMP_Text textoUsos;
 
     /// <summary>
-    /// Llama a este método cuando crees el hechizo en el tablero o inventario.
+    /// Llama a este mï¿½todo cuando crees el hechizo en el tablero o inventario.
     /// </summary>
-    /// <param name="usosGuardados">Pasa los usos que tenía el jugador. Si es un hechizo nuevo, no pases nada (usará -1).</param>
+    /// <param name="usosGuardados">Pasa los usos que tenï¿½a el jugador. Si es un hechizo nuevo, no pases nada (usarï¿½ -1).</param>
 
     // de momento pongo el start para las pruebas pero hay que quitarlo para que no se esten reseteando los usos cada vez que se recarga la escena
     protected virtual void Start()
@@ -71,13 +71,13 @@ public class Atributos : MonoBehaviour
 
             if (usosActuales <= 0)
             {
-                Debug.Log("¡Hechizo agotado: " + gameObject.name + "!");
-                // Aquí avisaremos al inventario de que este hechizo debe destruirse
+                Debug.Log("Hechizo agotado: " + gameObject.name + "!");
+                // Aquï¿½ avisaremos al inventario de que este hechizo debe destruirse
             }
         }
     }
 
-    public void AñadirUsos(int cantidad)
+    public void AnadirUsos(int cantidad)
     {
         usosActuales += cantidad;
         ActualizarUI();

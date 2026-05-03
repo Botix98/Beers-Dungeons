@@ -19,7 +19,6 @@ public class LoginController : MonoBehaviour
 
     private void Awake()
     {
-        // === Auto-buscar inputs si no están asignados ===
         if (ipUsuario == null)
         {
             var go = GameObject.Find("IpUsuario");
@@ -28,11 +27,10 @@ public class LoginController : MonoBehaviour
 
         if (ipContrasena == null)
         {
-            var go = GameObject.Find("IpContraseña");
+            var go = GameObject.Find("IpContrase?a");
             if (go != null) ipContrasena = go.GetComponent<TMP_InputField>();
         }
 
-        // === Auto-buscar botones si no están asignados ===
         if (btnIniciarSesion == null)
         {
             var go = GameObject.Find("BtnIniciarSesion");
@@ -48,23 +46,13 @@ public class LoginController : MonoBehaviour
 
     private void Start()
     {
-        // Enganchar eventos OnClick automáticamente (sin tocar el inspector del botón)
         if (btnIniciarSesion != null)
             btnIniciarSesion.onClick.AddListener(OnIniciarSesion);
 
         if (btnCrearCuenta != null)
             btnCrearCuenta.onClick.AddListener(OnCrearCuenta);
-
-        // Seguridad básica: si falta algo, avisamos en consola.
-        if (ipUsuario == null) Debug.LogError("No se encontró IpUsuario (TMP_InputField).");
-        if (ipContrasena == null) Debug.LogError("No se encontró IpContraseña (TMP_InputField).");
-        if (btnIniciarSesion == null) Debug.LogError("No se encontró BtnIniciarSesion (Button).");
-        if (btnCrearCuenta == null) Debug.LogError("No se encontró BtnCrear (Button).");
     }
 
-    // =====================
-    // INICIAR SESIÓN
-    // =====================
     public async void OnIniciarSesion()
     {
         try
@@ -72,88 +60,42 @@ public class LoginController : MonoBehaviour
             string nombre = (ipUsuario != null) ? ipUsuario.text.Trim() : "";
             string password = (ipContrasena != null) ? ipContrasena.text : "";
 
-            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(password))
-            {
-                Debug.LogWarning("Campos vacíos.");
-                return;
-            }
+            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(password)) return;
 
             string hash = PasswordUtils.HashPassword(password);
-
-            string query =
-                $"/{TABLA}?nombre=eq.{Escape(nombre)}" +
-                $"&password_hash=eq.{hash}" +
-                $"&select=id,nombre";
+            string query = $"/{TABLA}?nombre=eq.{Escape(nombre)}&password_hash=eq.{hash}&select=id,nombre";
 
             string json = await SupabaseClient.Instance.Get(query);
 
-            if (json.Trim() == "[]")
-            {
-                Debug.LogWarning("Usuario o contraseña incorrectos.");
-                return;
-            }
+            if (json.Trim() == "[]") return;
 
-            // “Sesión” local
-            PlayerPrefs.SetString("jugador_nombre", nombre);
-            PlayerPrefs.Save();
+            string id = "";
+            var match = System.Text.RegularExpressions.Regex.Match(json, "\"id\":\"(.*?)\"");
+            if (match.Success) id = match.Groups[1].Value;
+
+            Session.JugadorId = id;
+            Session.Nombre = nombre;
 
             SceneManager.LoadScene(escenaMenuPrincipal);
         }
-        catch (System.Exception e)
-        {
-            Debug.LogError(e.Message);
-        }
+        catch (System.Exception e) { Debug.LogError(e.Message); }
     }
 
-    // =====================
-    // CREAR CUENTA
-    // =====================
     public async void OnCrearCuenta()
     {
         try
         {
-            string ping = await SupabaseClient.Instance.Get("/?select=1");
-            Debug.Log("PING: " + ping);
             string nombre = (ipUsuario != null) ? ipUsuario.text.Trim() : "";
             string password = (ipContrasena != null) ? ipContrasena.text : "";
 
-            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(password))
-            {
-                Debug.LogWarning("Campos vacíos.");
-                return;
-            }
-
-            // comprobar si ya existe el usuario en la base de datos
-            string existe = await SupabaseClient.Instance.Get(
-                $"/{TABLA}?nombre=eq.{Escape(nombre)}&select=id"
-            );
-
-            if (existe.Trim() != "[]")
-            {
-                Debug.LogWarning("El usuario ya existe.");
-                return;
-            }
+            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(password)) return;
 
             string hash = PasswordUtils.HashPassword(password);
-
-            string body =
-                "{"
-                + $"\"nombre\":\"{nombre}\","
-                + $"\"password_hash\":\"{hash}\","
-                + "\"monedas\":0,"
-                + "\"tablero\":0,"
-                + "\"activo\":true,"
-                + "\"volumen_musica\":0.8"
-                + "}";
+            string body = "{\"nombre\":\"" + nombre + "\",\"password_hash\":\"" + hash + "\",\"monedas\":0,\"tablero\":0,\"activo\":true,\"volumen_musica\":0.8}";
 
             await SupabaseClient.Instance.Post($"/{TABLA}", body);
-
-            Debug.Log("Cuenta creada correctamente. Ya puedes iniciar sesión.");
         }
-        catch (System.Exception e)
-        {
-            Debug.LogError(e.Message);
-        }
+        catch (System.Exception e) { Debug.LogError(e.Message); }
     }
 
     private string Escape(string s) => UnityEngine.Networking.UnityWebRequest.EscapeURL(s);
