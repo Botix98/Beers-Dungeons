@@ -8,6 +8,9 @@ public class CambioObjetos : MonoBehaviour
     [SerializeField] private GameObject grid;
     [SerializeField] private TextMeshProUGUI monedas;
 
+    [SerializeField] private int costeCambio = 50;
+    [SerializeField] private TextMeshProUGUI costeCambioText;
+
     [Header("Tablero Info Objeto")]
     [SerializeField] private GameObject infoObjeto;
     [SerializeField] private Image infoSprite;
@@ -17,16 +20,22 @@ public class CambioObjetos : MonoBehaviour
 
     public void CambiarObjetos()
     {
-        //FALTA HACER QUE COMPRUEBE SI TIENES DINERO SUFICIENTE PARA HACER EL CAMBIO Y SI NO LO TIENES QUE NO TE DEJE HACERLO
+        if (int.Parse(monedas.text) < costeCambio)
+        {
+            //Aqui se puede hacer alguna animacion o indicarle al usuario que no tiene dinero
+            return;
+        }
+
+        monedas.text = (int.Parse(monedas.text) - costeCambio).ToString();
+        costeCambio += 50; // Incrementa el coste para la siguiente vez
+        costeCambioText.text = costeCambio.ToString() + " Oro";
+
         for (int i = grid.transform.childCount - 1; i >= 0; i--)
         {
             Destroy(grid.transform.GetChild(i).gameObject);
         }
-
-        Debug.Log("Ha salido supongo ns");
         for (int i = 0; i < 4; i++)
         {
-            Debug.Log("Y aqui entra?");
             GameObject objeto = Instantiate(itemPrefab[Random.Range(0, 14)], grid.transform);
             objeto.GetComponent<Objeto>().InfoObjeto = infoObjeto;
             objeto.GetComponent<Objeto>().InfoSprite = infoSprite;

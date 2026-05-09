@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9017642392717116117}
   - component: {fileID: 8072023540243706373}
   - component: {fileID: 2589041936008191918}
-  - component: {fileID: 3762639528658589998}
   - component: {fileID: -6691150324573645643}
   - component: {fileID: 2004876740297157740}
   m_Layer: 5
@@ -61,14 +60,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4632038, g: 0, b: 0.7264151, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -1495395978326949172, guid: 40a668ff2e4f6d643aa467c3e2dba467, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -78,22 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3762639528658589998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4384458252542320713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8da5b5a253e9ff744a0779a78e6ed508, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HechizoBUF
-  id: 9
-  espacios: 1
-  elemento: 0
-  golpear: 2
 --- !u!114 &-6691150324573645643
 MonoBehaviour:
   m_ObjectHideFlags: 0
