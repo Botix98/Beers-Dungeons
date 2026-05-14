@@ -21,6 +21,13 @@ public class NumSlot : MonoBehaviour, IDropHandler
                 {
                     hechizo.EstablecerDano(draggableNum.valor);
                 }
+
+                // Es un bucle?
+                ObjetoBucle bucle = GetComponentInParent<ObjetoBucle>();
+                if (bucle != null)
+                {
+                    bucle.EstablecerIteraciones(draggableNum.valor);
+                }
             }
         }
     }
