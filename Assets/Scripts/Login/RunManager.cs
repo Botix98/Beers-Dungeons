@@ -79,7 +79,7 @@ public class RunManager : MonoBehaviour
     }
     public async void CargarMejorasJugador()
     {
-        string endpoint = $"/jugador_mejoras?select=mejora_id,nivel_actual,desbloqueada,adquirida_at&jugador_id=eq.{Session.JugadorId}";
+        string endpoint = $"/jugador_mejoras?select=mejora_id,nivel_actual,desbloqueada,adquirida_at&jugador_id=eq.{Session.JugadorId}&order=mejora_id.asc";
 
         try
         {

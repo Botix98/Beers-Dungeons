@@ -6,8 +6,8 @@ using System.Collections;
 
 public class Jugador : MonoBehaviour
 {
-    [Header("Estadísticas")]
-    public int vidaMaxima = 100;
+    [Header("Estadï¿½sticas")]
+    public int vidaMaxima;
     public int vidaActual;
 
     [Header("Estados Alterados")]
@@ -20,6 +20,13 @@ public class Jugador : MonoBehaviour
 
     private void Start()
     {
+        foreach (var mejora in RunManager.Instance.mejorasJugador)
+        {
+            Debug.Log($"Mejora ID: {mejora.idMejora}, Nivel: {mejora.nivelActual}, Desbloqueada: {mejora.desbloqueada}");
+        }
+        vidaMaxima = RunManager.Instance.mejorasJugador[1].desbloqueada ? (100 + (25 * RunManager.Instance.mejorasJugador[1].nivelActual)) : 100;
+        PlayerPrefs.SetInt("vidaMax", vidaMaxima);
+
         vidaActual = vidaMaxima;
         ActualizarUI();
 
@@ -34,20 +41,20 @@ public class Jugador : MonoBehaviour
 
     public void RecibirDano(int cantidad, elementos estadoAtaque)
     {
-        // 1. Modificadores de daño (Vulnerabilidades)
+        // 1. Modificadores de daï¿½o (Vulnerabilidades)
         float multiplicador = 1f;
-        if (TieneEstado(elementos.Calor)) multiplicador += 0.5f; // Recibe x1.5 de daño
-        if (TieneEstado(elementos.Electrico)) multiplicador += 1f; // Recibe x2 de daño
+        if (TieneEstado(elementos.Calor)) multiplicador += 0.5f; // Recibe x1.5 de daï¿½o
+        if (TieneEstado(elementos.Electrico)) multiplicador += 1f; // Recibe x2 de daï¿½o
 
         int danoFinal = Mathf.RoundToInt(cantidad * multiplicador);
 
-        // 2. Aplicar el daño
+        // 2. Aplicar el daï¿½o
         vidaActual -= danoFinal;
         if (vidaActual < 0) vidaActual = 0;
 
         ActualizarUI();
 
-        // 3. Aplicar el estado del ataque (solo si te hizo más de 0)
+        // 3. Aplicar el estado del ataque (solo si te hizo mï¿½s de 0)
         if (cantidad > 0)
         {
             AplicarEstado(estadoAtaque);
@@ -77,7 +84,7 @@ public class Jugador : MonoBehaviour
             if (estado.tipo == elementos.Calor)
             {
                 int danoCalor = Mathf.Max(1, Mathf.RoundToInt(vidaMaxima * 0.05f));
-                RecibirDano(danoCalor, elementos.Fisico); // Se pasa "Físico" para que no rebote
+                RecibirDano(danoCalor, elementos.Fisico); // Se pasa "Fï¿½sico" para que no rebote
             }
             else if (estado.tipo == elementos.Toxina)
             {
@@ -94,7 +101,7 @@ public class Jugador : MonoBehaviour
 
             estado.turnosActivo++;
 
-            // Restar duración y eliminar si se acaba
+            // Restar duraciï¿½n y eliminar si se acaba
             if (estado.turnosRestantes > 0)
             {
                 estado.turnosRestantes--;
@@ -144,7 +151,7 @@ public class Jugador : MonoBehaviour
         if (estadosActuales.Count > 0)
         {
             int rnd = Random.Range(0, estadosActuales.Count);
-            Debug.Log($"Llama Purificadora eliminó el estado: {estadosActuales[rnd]}");
+            Debug.Log($"Llama Purificadora eliminï¿½ el estado: {estadosActuales[rnd]}");
             estadosActuales.RemoveAt(rnd);
         }
     }
@@ -157,7 +164,7 @@ public class Jugador : MonoBehaviour
 
     public void AplicarEstadoAleatorio()
     {
-        // Elige del 1 al 5 (se salta el 0 que es Físico)
+        // Elige del 1 al 5 (se salta el 0 que es Fï¿½sico)
         elementos randElem = (elementos)Random.Range(1, 6);
         AplicarEstado(randElem);
     }
@@ -172,7 +179,7 @@ public class Jugador : MonoBehaviour
         if (barraVidaAmarilla == null || barraVida == null) yield break;
 
         float tiempo = 0f;
-        float duracion = 0.5f; // Medio segundo de animación suave
+        float duracion = 0.5f; // Medio segundo de animaciï¿½n suave
         float fillInicial = barraVidaAmarilla.fillAmount;
         float fillObjetivo = barraVida.fillAmount;
 

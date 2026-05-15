@@ -46,6 +46,7 @@ public class Objeto : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
                     RunManager.Instance.mejorasJugador[idMejora - 1].desbloqueada = true;
 
                 RunManager.Instance.ActualizarMonedasJugador();
+                RunManager.Instance.ActualizarMejorasJugador();
 
                 Debug.Log($"Mejora comprada");
 

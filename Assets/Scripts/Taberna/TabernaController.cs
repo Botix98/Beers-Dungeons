@@ -10,8 +10,8 @@ public class TabernaController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        int vidaMax = RunManager.Instance.mejorasJugador[1].desbloqueada ? 100 * RunManager.Instance.mejorasJugador[1].nivelActual : 100;
-        PlayerPrefs.SetInt("vidaMax", vidaMax);
+        //int vidaMax = RunManager.Instance.mejorasJugador[1].desbloqueada ? 100 + 25 * RunManager.Instance.mejorasJugador[1].nivelActual : 100;
+        //PlayerPrefs.SetInt("vidaMax", vidaMax);
 
         textoLeyendas.text = RunManager.Instance.jugador.monedas.ToString();
     }
