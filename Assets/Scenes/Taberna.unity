@@ -656,7 +656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2943593503923319699, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: nombre
@@ -1092,7 +1092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2943593503923319699, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: nombre
@@ -1935,7 +1935,6 @@ GameObject:
   - component: {fileID: 282477762}
   - component: {fileID: 282477763}
   - component: {fileID: 282477764}
-  - component: {fileID: 282477765}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1984,20 +1983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56056576209cdb34db31b9ba9ac404e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TabernaController
---- !u!114 &282477765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282477761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3772855e615f03448a4f45be96df4729, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RunInitializer
-  monedasInicialesRun: 0
-  cargarAlStart: 1
+  textoLeyendas: {fileID: 2018040819}
 --- !u!1001 &333602217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2667,7 +2653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2943593503923319699, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: nombre
@@ -3406,15 +3392,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1701445954468547337, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_Color.b
-      value: 0.44342467
+      value: 0.72363335
       objectReference: {fileID: 0}
     - target: {fileID: 1701445954468547337, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_Color.g
-      value: 0.44342467
+      value: 0.623503
       objectReference: {fileID: 0}
     - target: {fileID: 1701445954468547337, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_Color.r
-      value: 0.81886786
+      value: 0.78867924
       objectReference: {fileID: 0}
     - target: {fileID: 2943593503923319699, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_Name
@@ -3426,11 +3412,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: nombre
-      value: Bola de cristal
+      value: vial de vida
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: precio
-      value: 20
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
+      propertyPath: idMejora
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: leyendas
@@ -3454,7 +3444,7 @@ PrefabInstance:
       objectReference: {fileID: 467693365}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: descripcion
-      value: Esta bola de cristal contiene los secretos de los verdaderos magos
+      value: Aumento de vida maxima
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: infoFuncion
@@ -4819,7 +4809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2943593503923319699, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: nombre
@@ -5123,15 +5113,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1701445954468547337, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_Color.b
-      value: 0.44342467
+      value: 0.45229387
       objectReference: {fileID: 0}
     - target: {fileID: 1701445954468547337, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_Color.g
-      value: 0.44342467
+      value: 0.81960785
       objectReference: {fileID: 0}
     - target: {fileID: 1701445954468547337, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_Color.r
-      value: 0.81886786
+      value: 0.44313726
       objectReference: {fileID: 0}
     - target: {fileID: 2943593503923319699, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_Name
@@ -5143,11 +5133,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: nombre
-      value: 4
+      value: tablon
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: precio
-      value: 5
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
+      propertyPath: idMejora
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: leyendas
@@ -5171,7 +5165,7 @@ PrefabInstance:
       objectReference: {fileID: 467693365}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: descripcion
-      value: d
+      value: Aumento de tablon
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: infoFuncion
@@ -5811,58 +5805,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406536923}
   m_CullTransparentMesh: 1
---- !u!1 &1425084249
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1425084250}
-  - component: {fileID: 1425084251}
-  m_Layer: 0
-  m_Name: RunManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1425084250
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1425084249}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.82001, y: 1.32647, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1425084251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1425084249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 036987ecdc781794cb2cbad4fc5d32cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RunManager
-  monedasRun: 0
-  hechizosRun: []
-  buclesRun: []
-  numerosRun: []
-  leyendasTotales: 0
-  tableroNivel: 0
-  mejorasCompradas: []
-  autoCargarAlInicio: 1
 --- !u!1 &1437065339
 GameObject:
   m_ObjectHideFlags: 0
@@ -6234,11 +6176,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: nombre
-      value: 8
+      value: ifs
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: precio
-      value: 15
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
+      propertyPath: idMejora
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: leyendas
@@ -6262,7 +6208,7 @@ PrefabInstance:
       objectReference: {fileID: 467693365}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: descripcion
-      value: h
+      value: Aumento multiplicador IF
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: infoFuncion
@@ -6825,15 +6771,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1701445954468547337, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_Color.b
-      value: 0.44342467
+      value: 0.7447834
       objectReference: {fileID: 0}
     - target: {fileID: 1701445954468547337, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_Color.g
-      value: 0.44342467
+      value: 0.81960785
       objectReference: {fileID: 0}
     - target: {fileID: 1701445954468547337, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_Color.r
-      value: 0.81886786
+      value: 0.44313726
       objectReference: {fileID: 0}
     - target: {fileID: 2943593503923319699, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: m_Name
@@ -6845,11 +6791,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: nombre
-      value: 5
+      value: mochila
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: precio
-      value: 5
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
+      propertyPath: idMejora
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: leyendas
@@ -6873,7 +6823,7 @@ PrefabInstance:
       objectReference: {fileID: 467693365}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: descripcion
-      value: e
+      value: Aumento de mochila
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: infoFuncion
@@ -7630,4 +7580,3 @@ SceneRoots:
   - {fileID: 1311724042}
   - {fileID: 604872279}
   - {fileID: 282477762}
-  - {fileID: 1425084250}

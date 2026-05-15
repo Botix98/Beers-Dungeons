@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class Objeto : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
 {
@@ -26,20 +27,43 @@ public class Objeto : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
     [SerializeField] private string nombre;
     [SerializeField] private int precio;
     [SerializeField] private string descripcion;
+    [SerializeField] private int idMejora;
 
     public void comprarObjeto()
     {
-        if(int.Parse(Leyendas.text) >= precio)
+        int leyendasActuales = int.Parse(Leyendas.text);
+
+        if (leyendasActuales >= precio)
         {
-            //gameObject.SetActive(false);
-            InfoObjeto.SetActive(false);
-            Leyendas.text = (int.Parse(Leyendas.text) - precio).ToString();
-            //Aqui es donde hay que añadir al inventario el objeto y actualizar la base de datos
-            Destroy(gameObject);
+            try 
+            {
+                Leyendas.text = (leyendasActuales - precio).ToString();
+
+                RunManager.Instance.jugador.monedas -= precio;
+                if (RunManager.Instance.mejorasJugador[idMejora - 1].desbloqueada)
+                    RunManager.Instance.mejorasJugador[idMejora - 1].nivelActual += 1;
+                else
+                    RunManager.Instance.mejorasJugador[idMejora - 1].desbloqueada = true;
+
+                RunManager.Instance.ActualizarMonedasJugador();
+
+                Debug.Log($"Mejora comprada");
+
+                InfoObjeto.SetActive(false);
+                Destroy(gameObject);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("Error al comprar objeto: " + e.Message);
+                // Revertimos el cambio en la UI para que el jugador no pierda sus monedas
+                RunManager.Instance.jugador.monedas = leyendasActuales;
+                Leyendas.text = leyendasActuales.ToString();
+                RunManager.Instance.ActualizarMonedasJugador();
+            }
         }
         else
         {
-            //Aqui se puede hacer alguna animacion o indicarle al usuario que no tiene dinero
+            Debug.Log("No tienes suficiente dinero");
         }
     }
 

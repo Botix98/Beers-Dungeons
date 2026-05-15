@@ -1972,6 +1972,7 @@ GameObject:
   - component: {fileID: 1746506874}
   - component: {fileID: 1746506875}
   - component: {fileID: 1746506876}
+  - component: {fileID: 1746506877}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2037,8 +2038,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1545b358ec4fc4689150e97bcba64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SupabaseClient
-  supabaseUrl: https://qfwyzhatszqyfilztfau.supabase.co/rest/v1
-  anonKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmd3l6aGF0c3pxeWZpbHp0ZmF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczMTMwMjIsImV4cCI6MjA4Mjg4OTAyMn0.RYHWVjeCIt5OobArbVuxsvrM_JsHpgJ-IXsud4rD0zE
+  supabaseUrl: https://ptdbmzcgblxrwmzoxeho.supabase.co/rest/v1
+  anonKey: sb_publishable_ENqZzmkUaMe9Uf9BS7ljFA_ITXj400V
+--- !u!114 &1746506877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746506872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775707384aa6c7649a13db41a83b96d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RunManager
+  jugador:
+    nombre: 
+    tablero: 0
+    monedas: 0
+    volumen_musica: 0
 --- !u!1 &1807181336
 GameObject:
   m_ObjectHideFlags: 0

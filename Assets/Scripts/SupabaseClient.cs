@@ -71,6 +71,7 @@ public class SupabaseClient : MonoBehaviour
         request.SetRequestHeader("apikey", anonKey);
         request.SetRequestHeader("Authorization", "Bearer " + anonKey);
         request.SetRequestHeader("Accept", "application/json");
+        request.SetRequestHeader("Prefer", "return=representation");
 
         request.certificateHandler = new BypassCertificate();
 

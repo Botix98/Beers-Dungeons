@@ -1,12 +1,18 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
+using System.Collections.Generic;
 
 public class TabernaController : MonoBehaviour
 {
+    [SerializeField] private TMPro.TMP_Text textoLeyendas;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        //Cuando esté el enlace con la base de datos se tendrá que cambiar el 100 por el valor de la base de datos
-        PlayerPrefs.SetInt("vidaMax", 100);
+        int vidaMax = RunManager.Instance.mejorasJugador[1].desbloqueada ? 100 * RunManager.Instance.mejorasJugador[1].nivelActual : 100;
+        PlayerPrefs.SetInt("vidaMax", vidaMax);
+
+        textoLeyendas.text = RunManager.Instance.jugador.monedas.ToString();
     }
 }
