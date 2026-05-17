@@ -85,6 +85,11 @@ public class RunManager : MonoBehaviour
         {
             string jsonResponse = await SupabaseClient.Instance.Get(endpoint);
             mejorasJugador = JsonConvert.DeserializeObject<List<MejorasJugador>>(jsonResponse);
+
+            int vidaMaxima = mejorasJugador[1].desbloqueada ? (100 + (25 * mejorasJugador[1].nivelActual)) : 100;
+            PlayerPrefs.SetInt("vidaMax", vidaMaxima);
+            PlayerPrefs.SetInt("vidaActual", vidaMaxima);
+
             Debug.Log("Mejoras del jugador cargadas correctamente.");
         }
         catch (System.Exception e)

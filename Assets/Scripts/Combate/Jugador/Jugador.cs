@@ -26,7 +26,7 @@ public class Jugador : MonoBehaviour
         }
         vidaMaxima = RunManager.Instance.mejorasJugador[1].desbloqueada ? (100 + (25 * RunManager.Instance.mejorasJugador[1].nivelActual)) : 100;
         PlayerPrefs.SetInt("vidaMax", vidaMaxima);
-        if (!PlayerPrefs.HasKey("vidaActual") || PlayerPrefs.GetInt("vidaActual") == 0)
+        if (PlayerPrefs.GetInt("vidaActual") == 0)
             PlayerPrefs.SetInt("vidaActual", vidaMaxima);
 
         vidaActual = PlayerPrefs.GetInt("vidaActual");
