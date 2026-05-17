@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7022579229542343836}
   - component: {fileID: 5626123132967524250}
   - component: {fileID: 1957441321416942079}
-  - component: {fileID: -2543285880900265353}
   - component: {fileID: -8061544289870360663}
+  - component: {fileID: 4549507135905774650}
   m_Layer: 5
   m_Name: RuedaDeLaDiosa
   m_TagString: Untagged
@@ -77,27 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-2543285880900265353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8824076712984985043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294bc5f646dc09844abb132541d9e2fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Objeto
-  leyendas: {fileID: 0}
-  infoObjeto: {fileID: 0}
-  infoSprite: {fileID: 0}
-  infoNombre: {fileID: 0}
-  infoFuncion: {fileID: 0}
-  infoPrecio: {fileID: 0}
-  nombre: 
-  precio: 1000
-  descripcion: 
 --- !u!114 &-8061544289870360663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -2543285880900265353}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objeto, Assembly-CSharp
         m_MethodName: comprarObjeto
         m_Mode: 1
@@ -154,3 +133,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4549507135905774650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824076712984985043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b623b3c38f20d46b91a5a7ffae14d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjetoTienda
+  monedas: {fileID: 0}
+  infoObjeto: {fileID: 0}
+  infoSprite: {fileID: 0}
+  infoNombre: {fileID: 0}
+  infoFuncion: {fileID: 0}
+  infoPrecio: {fileID: 0}
+  nombre: Rueda de la diosa
+  precio: 100
+  descripcion: 

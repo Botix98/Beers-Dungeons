@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class ObjetoTienda : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private TextMeshProUGUI monedas;
+    [SerializeField] public TextMeshProUGUI monedas;
 
     [Header("Tablero Info Objeto")]
-    [SerializeField] private GameObject infoObjeto;
-    [SerializeField] private Image infoSprite;
-    [SerializeField] private TextMeshProUGUI infoNombre;
-    [SerializeField] private TextMeshProUGUI infoFuncion;
-    [SerializeField] private TextMeshProUGUI infoPrecio;
+    [SerializeField] public GameObject infoObjeto;
+    [SerializeField] public Image infoSprite;
+    [SerializeField] public TextMeshProUGUI infoNombre;
+    [SerializeField] public TextMeshProUGUI infoFuncion;
+    [SerializeField] public TextMeshProUGUI infoPrecio;
 
     [Header("Objeto")]
     [SerializeField] private string nombre;
@@ -26,11 +26,28 @@ public class ObjetoTienda : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             gameObject.SetActive(false);
             infoObjeto.SetActive(false);
             monedas.text = (int.Parse(monedas.text) - precio).ToString();
-            //Aqui es donde hay que añadir al inventario el objeto y actualizar la base de datos
+            PlayerPrefs.SetInt("monedas", int.Parse(monedas.text) - precio);
+            Debug.Log($"Objeto comprado: {nombre}");
         }
         else
         {
             //Aqui se puede hacer alguna animacion o indicarle al usuario que no tiene dinero
+        }
+    }
+
+    public void RecuperarVidaActual()
+    {
+        if (int.Parse(monedas.text) >= precio)
+        {
+            monedas.text = (int.Parse(monedas.text) - precio).ToString();
+            PlayerPrefs.SetInt("monedas", int.Parse(monedas.text) - precio);
+            PlayerPrefs.SetInt("vidaActual", PlayerPrefs.GetInt("vidaMax"));
+
+            GameObject.Find("NumeroVida").GetComponent<TMP_Text>().text = PlayerPrefs.GetInt("vidaActual").ToString() + "/" + PlayerPrefs.GetInt("vidaMax").ToString();
+
+            this.gameObject.SetActive(false);
+
+            Debug.Log("Vida recuperada al maximo");
         }
     }
 

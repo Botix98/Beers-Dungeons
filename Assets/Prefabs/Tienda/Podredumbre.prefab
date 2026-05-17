@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6902197866191826206}
   - component: {fileID: 547550274790498949}
   - component: {fileID: 8833570181528145238}
-  - component: {fileID: 3822210541175575430}
   - component: {fileID: 7292069691701189112}
+  - component: {fileID: -8030308767205816672}
   m_Layer: 5
   m_Name: Podredumbre
   m_TagString: Untagged
@@ -77,27 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3822210541175575430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3580121509310904821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294bc5f646dc09844abb132541d9e2fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Objeto
-  leyendas: {fileID: 0}
-  infoObjeto: {fileID: 0}
-  infoSprite: {fileID: 0}
-  infoNombre: {fileID: 0}
-  infoFuncion: {fileID: 0}
-  infoPrecio: {fileID: 0}
-  nombre: 
-  precio: 1000
-  descripcion: 
 --- !u!114 &7292069691701189112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3822210541175575430}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objeto, Assembly-CSharp
         m_MethodName: comprarObjeto
         m_Mode: 1
@@ -154,3 +133,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-8030308767205816672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3580121509310904821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b623b3c38f20d46b91a5a7ffae14d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjetoTienda
+  monedas: {fileID: 0}
+  infoObjeto: {fileID: 0}
+  infoSprite: {fileID: 0}
+  infoNombre: {fileID: 0}
+  infoFuncion: {fileID: 0}
+  infoPrecio: {fileID: 0}
+  nombre: Podredumbre
+  precio: 100
+  descripcion: 

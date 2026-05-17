@@ -18,6 +18,21 @@ public class CambioObjetos : MonoBehaviour
     [SerializeField] private TextMeshProUGUI infoFuncion;
     [SerializeField] private TextMeshProUGUI infoPrecio;
 
+    private void Start()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject objeto = Instantiate(itemPrefab[Random.Range(0, 14)], grid.transform);
+            objeto.GetComponent<ObjetoTienda>().infoObjeto = infoObjeto;
+            objeto.GetComponent<ObjetoTienda>().infoSprite = infoSprite;
+            objeto.GetComponent<ObjetoTienda>().infoNombre = infoNombre;
+            objeto.GetComponent<ObjetoTienda>().infoFuncion = infoFuncion;
+            objeto.GetComponent<ObjetoTienda>().infoPrecio = infoPrecio;
+            objeto.GetComponent<ObjetoTienda>().monedas = monedas;
+            objeto.GetComponent<Button>().onClick.AddListener(objeto.GetComponent<ObjetoTienda>().comprarObjeto);
+        }
+    }
+
     public void CambiarObjetos()
     {
         if (int.Parse(monedas.text) < costeCambio)
@@ -27,6 +42,7 @@ public class CambioObjetos : MonoBehaviour
         }
 
         monedas.text = (int.Parse(monedas.text) - costeCambio).ToString();
+        PlayerPrefs.SetInt("monedas", int.Parse(monedas.text) - costeCambio);
         costeCambio += 50; // Incrementa el coste para la siguiente vez
         costeCambioText.text = costeCambio.ToString() + " Oro";
 
@@ -37,12 +53,13 @@ public class CambioObjetos : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             GameObject objeto = Instantiate(itemPrefab[Random.Range(0, 14)], grid.transform);
-            objeto.GetComponent<Objeto>().InfoObjeto = infoObjeto;
-            objeto.GetComponent<Objeto>().InfoSprite = infoSprite;
-            objeto.GetComponent<Objeto>().InfoNombre = infoNombre;
-            objeto.GetComponent<Objeto>().InfoFuncion = infoFuncion;
-            objeto.GetComponent<Objeto>().InfoPrecio = infoPrecio;
-            objeto.GetComponent<Objeto>().Leyendas = monedas;
+            objeto.GetComponent<ObjetoTienda>().infoObjeto = infoObjeto;
+            objeto.GetComponent<ObjetoTienda>().infoSprite = infoSprite;
+            objeto.GetComponent<ObjetoTienda>().infoNombre = infoNombre;
+            objeto.GetComponent<ObjetoTienda>().infoFuncion = infoFuncion;
+            objeto.GetComponent<ObjetoTienda>().infoPrecio = infoPrecio;
+            objeto.GetComponent<ObjetoTienda>().monedas = monedas;
+            objeto.GetComponent<Button>().onClick.AddListener(objeto.GetComponent<ObjetoTienda>().comprarObjeto);
         }
     }
 }

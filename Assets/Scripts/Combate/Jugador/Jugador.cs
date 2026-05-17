@@ -26,8 +26,11 @@ public class Jugador : MonoBehaviour
         }
         vidaMaxima = RunManager.Instance.mejorasJugador[1].desbloqueada ? (100 + (25 * RunManager.Instance.mejorasJugador[1].nivelActual)) : 100;
         PlayerPrefs.SetInt("vidaMax", vidaMaxima);
+        if (!PlayerPrefs.HasKey("vidaActual") || PlayerPrefs.GetInt("vidaActual") == 0)
+            PlayerPrefs.SetInt("vidaActual", vidaMaxima);
 
-        vidaActual = vidaMaxima;
+        vidaActual = PlayerPrefs.GetInt("vidaActual");
+
         ActualizarUI();
 
         if (barraVidaAmarilla != null) barraVidaAmarilla.fillAmount = 1f;
@@ -51,6 +54,8 @@ public class Jugador : MonoBehaviour
         // 2. Aplicar el da�o
         vidaActual -= danoFinal;
         if (vidaActual < 0) vidaActual = 0;
+
+        PlayerPrefs.SetInt("vidaActual", vidaActual);
 
         ActualizarUI();
 
@@ -114,6 +119,9 @@ public class Jugador : MonoBehaviour
     {
         vidaActual += cantidad;
         if (vidaActual > vidaMaxima) vidaActual = vidaMaxima;
+
+        PlayerPrefs.SetInt("vidaActual", vidaActual);
+
         ActualizarUI();
     }
 
@@ -121,7 +129,10 @@ public class Jugador : MonoBehaviour
     public void AumentarVidaMaxima(int cantidad)
     {
         vidaMaxima += cantidad;
+        PlayerPrefs.SetInt("vidaMaxima", vidaMaxima);
         vidaActual += cantidad; // esto es para que la vida aumentada se sume a la actual y se le sume al momento
+        PlayerPrefs.SetInt("vidaActual", vidaActual);
+        
         ActualizarUI();
     }
 

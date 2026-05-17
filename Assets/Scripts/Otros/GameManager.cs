@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public void Cargar(string nombreEscena)
     {
+        PlayerPrefs.SetInt("monedas", 1000);
         Time.timeScale = 1f;
         SceneManager.LoadScene(nombreEscena);
     }

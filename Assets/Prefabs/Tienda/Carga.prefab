@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8321179977733050182}
   - component: {fileID: 1656003070225250992}
   - component: {fileID: 2183166961242715000}
-  - component: {fileID: 6318916363461547527}
   - component: {fileID: 5319727129561277089}
+  - component: {fileID: -7495009157231743085}
   m_Layer: 5
   m_Name: Carga
   m_TagString: Untagged
@@ -77,27 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6318916363461547527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5516559914118695712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294bc5f646dc09844abb132541d9e2fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Objeto
-  leyendas: {fileID: 0}
-  infoObjeto: {fileID: 0}
-  infoSprite: {fileID: 0}
-  infoNombre: {fileID: 0}
-  infoFuncion: {fileID: 0}
-  infoPrecio: {fileID: 0}
-  nombre: 
-  precio: 1000
-  descripcion: 
 --- !u!114 &5319727129561277089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6318916363461547527}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objeto, Assembly-CSharp
         m_MethodName: comprarObjeto
         m_Mode: 1
@@ -154,3 +133,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-7495009157231743085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5516559914118695712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b623b3c38f20d46b91a5a7ffae14d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjetoTienda
+  monedas: {fileID: 0}
+  infoObjeto: {fileID: 0}
+  infoSprite: {fileID: 0}
+  infoNombre: {fileID: 0}
+  infoFuncion: {fileID: 0}
+  infoPrecio: {fileID: 0}
+  nombre: Carga
+  precio: 100
+  descripcion: 

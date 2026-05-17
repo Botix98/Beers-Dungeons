@@ -6,7 +6,7 @@ using System.Collections;
 
 public class Enemigo : MonoBehaviour
 {
-    [Header("Estadísticas")]
+    [Header("Estadï¿½sticas")]
     public int vidaMaxima = 100;
     public int vidaActual;
 
@@ -15,8 +15,8 @@ public class Enemigo : MonoBehaviour
     public int danoMaximo = 10;
 
 
-    [HideInInspector] public int intencionBase; // El daño puro antes de estados
-    [HideInInspector] public int intencionActual; // El daño que se va a hacer
+    [HideInInspector] public int intencionBase; // El daï¿½o puro antes de estados
+    [HideInInspector] public int intencionActual; // El daï¿½o que se va a hacer
     [HideInInspector] public elementos elementoIntencion;
 
     [Header("Estados Alterados")]
@@ -42,7 +42,7 @@ public class Enemigo : MonoBehaviour
     public void RecibirDano(int cantidad, elementos estadoAtaque)
     {
         float multiplicador = 1f;
-        if (TieneEstado(elementos.Electrico)) multiplicador += 1f; // x2 daño recibido
+        if (TieneEstado(elementos.Electrico)) multiplicador += 1f; // x2 daï¿½o recibido
 
         int danoFinal = Mathf.RoundToInt(cantidad * multiplicador);
 
@@ -52,7 +52,7 @@ public class Enemigo : MonoBehaviour
         ActualizarUI();
 
         if (cantidad > 0) AplicarEstado(estadoAtaque);
-        if (vidaActual == 0) Debug.Log("¡Enemigo derrotado!");
+        if (vidaActual == 0) Debug.Log("ï¿½Enemigo derrotado!");
     }
 
     public void AplicarEstado(elementos nuevoEstado)
@@ -64,7 +64,7 @@ public class Enemigo : MonoBehaviour
         if (nuevoEstado == elementos.Cortante) duracion = 3;
 
         estadosActuales.Add(new EstadoAlterado(nuevoEstado, duracion));
-        Debug.Log($"¡El enemigo sufre el estado: {nuevoEstado}!");
+        Debug.Log($"ï¿½El enemigo sufre el estado: {nuevoEstado}!");
 
         // Recalcular el ataque en tiempo real por si le has tirado Calor o Frio
         RecalcularIntencion();
@@ -106,7 +106,7 @@ public class Enemigo : MonoBehaviour
     // Logica de intencion y escalado de dificultad
     public void GenerarIntencion()
     {
-        // Elige un número aleatorio entre el mínimo y el máximo (el +1 es porque Random.Range no incluye el último número)
+        // Elige un nï¿½mero aleatorio entre el mï¿½nimo y el mï¿½ximo (el +1 es porque Random.Range no incluye el ï¿½ltimo nï¿½mero)
         intencionBase = Random.Range(danoMinimo, danoMaximo + 1);
         // Elige un elemento aleatorio (del 0 al 5, ya que hay 6 elementos en el enum)
         elementoIntencion = (elementos)Random.Range(0, 6);
@@ -116,8 +116,8 @@ public class Enemigo : MonoBehaviour
     public void RecalcularIntencion()
     {
         float mult = 1f;
-        if (TieneEstado(elementos.Calor)) mult += 0.5f; // Enemigo hace x1.5 de daño
-        if (TieneEstado(elementos.Frio)) mult -= 0.3f;  // Enemigo hace 30% menos de daño
+        if (TieneEstado(elementos.Calor)) mult += 0.5f; // Enemigo hace x1.5 de daï¿½o
+        if (TieneEstado(elementos.Frio)) mult -= 0.3f;  // Enemigo hace 30% menos de daï¿½o
 
         intencionActual = Mathf.RoundToInt(intencionBase * mult);
 
@@ -127,9 +127,9 @@ public class Enemigo : MonoBehaviour
 
     public void EscalarDificultad()
     {
-        // Aumenta el máximo de daño que puede hacer en el futuro
+        // Aumenta el mï¿½ximo de daï¿½o que puede hacer en el futuro
         danoMaximo += 2;
-        Debug.Log($"La dificultad sube. El enemigo ahora puede hacer hasta {danoMaximo} de daño.");
+        Debug.Log($"La dificultad sube. El enemigo ahora puede hacer hasta {danoMaximo} de daï¿½o.");
     }
 
     private void ActualizarUI()
