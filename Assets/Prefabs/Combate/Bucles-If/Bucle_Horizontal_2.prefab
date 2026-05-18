@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3445566726197568657}
   - component: {fileID: 4643813064376890412}
   - component: {fileID: 4343931773589332372}
+  - component: {fileID: 1440875558466695076}
+  - component: {fileID: 7882487945133060597}
   m_Layer: 5
   m_Name: Bucle_Horizontal_2
   m_TagString: Untagged
@@ -93,6 +95,32 @@ MonoBehaviour:
   celdasQueOcupa:
   - {x: 0, y: 0}
   - {x: 1, y: 0}
+--- !u!225 &1440875558466695076
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357906668951600803}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &7882487945133060597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357906668951600803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389734183ced11140bc82a96a4b7dfaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DraggableBucle
+  parentOriginal: {fileID: 0}
+  posicionOriginal: {x: 0, y: 0, z: 0}
 --- !u!1 &7538099426880001766
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,6 +133,7 @@ GameObject:
   - component: {fileID: 362374129910688313}
   - component: {fileID: 3035327269218418638}
   - component: {fileID: 8368262518400198963}
+  - component: {fileID: 3514439763004312555}
   m_Layer: 5
   m_Name: CuadroNumero
   m_TagString: Untagged
@@ -181,3 +210,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9dad9f947ee52479d87ab35d7ed592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NumSlot
+--- !u!114 &3514439763004312555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7538099426880001766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5e7e476d54e8e409d41b78ebd21e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BucleNumSlotVisual
+  factorHover: 1.5
+  escalaNumeroInterno: 0.5

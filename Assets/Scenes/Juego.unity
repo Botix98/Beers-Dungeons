@@ -9713,16 +9713,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4343931773589332372, guid: 4802b20aeed7b3949b69c1acf963b38c, type: 3}
+      propertyPath: celdasQueOcupa.Array.data[1].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343931773589332372, guid: 4802b20aeed7b3949b69c1acf963b38c, type: 3}
+      propertyPath: celdasQueOcupa.Array.data[1].y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1357906668951600803, guid: 4802b20aeed7b3949b69c1acf963b38c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1844022846}
-    - targetCorrespondingSourceObject: {fileID: 1357906668951600803, guid: 4802b20aeed7b3949b69c1acf963b38c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1844022845}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4802b20aeed7b3949b69c1acf963b38c, type: 3}
 --- !u!224 &1384599253 stripped
 RectTransform:
@@ -13630,41 +13632,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1803011443}
   m_CullTransparentMesh: 1
---- !u!1 &1844022840 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1357906668951600803, guid: 4802b20aeed7b3949b69c1acf963b38c, type: 3}
-  m_PrefabInstance: {fileID: 1382207282}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1844022841 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4259538280424330406, guid: 4802b20aeed7b3949b69c1acf963b38c, type: 3}
   m_PrefabInstance: {fileID: 1382207282}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1844022845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844022840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 389734183ced11140bc82a96a4b7dfaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DraggableBucle
-  parentOriginal: {fileID: 0}
---- !u!225 &1844022846
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844022840}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!224 &1855741172 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6349893731000662335, guid: 8daee6bdc72861a45b85fc317a6ff371, type: 3}

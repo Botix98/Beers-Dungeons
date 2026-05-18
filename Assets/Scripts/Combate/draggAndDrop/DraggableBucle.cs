@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI; // <--- AÑADIDO: Necesario para perforar la UI
 
 [RequireComponent(typeof(CanvasGroup))]
-public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+// <--- AÑADIDO: ICanvasRaycastFilter al final de esta línea
+public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, ICanvasRaycastFilter
 {
     [HideInInspector] public Transform parentOriginal;
+    [HideInInspector] public Vector3 posicionOriginal;
+
     private ObjetoBucle objetoBucle;
     private CanvasGroup canvasGroup;
     private RectTransform rectTransform;
@@ -19,17 +23,11 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // Guardamos de dónde venimos (Inventario) por si lo soltamos en un sitio no válido
-        if (transform.parent.name != "ImgCuadri") // Si no estábamos ya en el tablero
-        {
-            parentOriginal = transform.parent;
-        }
+        parentOriginal = transform.parent;
+        posicionOriginal = transform.position;
 
-        // Lo ponemos en el canvas principal para que se vea por encima de todo al arrastrar
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
-
-        // Desactivamos los raycasts para que el ratón pueda "atravesar" la pieza y detectar las casillas del tablero
         canvasGroup.blocksRaycasts = false;
     }
 
@@ -42,63 +40,105 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         canvasGroup.blocksRaycasts = true;
 
-        // Lanzamos un "rayo" desde el ratón para ver qué hay debajo
         List<RaycastResult> resultados = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, resultados);
 
         SpellSlot casillaBase = null;
         foreach (RaycastResult res in resultados)
         {
-            casillaBase = res.gameObject.GetComponent<SpellSlot>();
-            if (casillaBase != null) break; // Encontramos una casilla
+            SpellSlot slotEncontrado = res.gameObject.GetComponent<SpellSlot>();
+            if (slotEncontrado != null && slotEncontrado.transform.parent.name == "ImgCuadri")
+            {
+                casillaBase = slotEncontrado;
+                break;
+            }
         }
 
-        // Si soltamos la esquina superior izquierda del ratón encima de una casilla...
-        if (casillaBase != null)
+        if (casillaBase != null && ComprobarLimitesTablero(casillaBase))
         {
-            if (ComprobarLimitesTablero(casillaBase))
-            {
-                // ¡Encaja! Lo hacemos hijo del fondo del tablero (ImgCuadri)
-                Transform contenedorTablero = casillaBase.transform.parent;
-                transform.SetParent(contenedorTablero);
-                transform.SetAsLastSibling(); // Para que se dibuje por encima de los hechizos
+            Transform contenedorTablero = casillaBase.transform.parent;
+            Transform padreSinGrid = contenedorTablero.parent;
 
-                AlinearConCasilla(casillaBase);
-                return; // Terminamos con éxito
-            }
-            else
-            {
-                Debug.Log("Tetris: El bucle choca con la pared o se sale del tablero.");
-            }
+            transform.SetParent(padreSinGrid);
+            transform.SetAsLastSibling();
+
+            AlinearConCasilla(casillaBase);
         }
-
-        // Si no soltamos en el tablero o se sale de los límites, vuelve a su sitio
-        if (parentOriginal != null)
+        else
         {
             transform.SetParent(parentOriginal);
+            transform.position = posicionOriginal;
+        }
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        GameObject dropped = eventData.pointerDrag;
+        if (dropped == null) return;
+
+        DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
+        DraggableNum draggableNum = dropped.GetComponent<DraggableNum>(); // Ahora también detecta números
+
+        if (draggableItem != null || draggableNum != null)
+        {
+            // Apagamos la colisión temporalmente para ver qué hay detrás
+            canvasGroup.blocksRaycasts = false;
+
+            PointerEventData pointerData = new PointerEventData(EventSystem.current)
+            {
+                position = Input.mousePosition
+            };
+
+            List<RaycastResult> resultados = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, resultados);
+
+            foreach (RaycastResult res in resultados)
+            {
+                // Si lo que soltaron fue un HECHIZO
+                if (draggableItem != null)
+                {
+                    SpellSlot slot = res.gameObject.GetComponent<SpellSlot>();
+                    if (slot != null && slot.transform.childCount == 0 && slot.transform.parent.name == "ImgCuadri")
+                    {
+                        draggableItem.parentAfterDrag = slot.transform;
+                        break;
+                    }
+                }
+                // Si lo que soltaron fue un NÚMERO
+                else if (draggableNum != null)
+                {
+                    NumSlot numSlotDestino = res.gameObject.GetComponent<NumSlot>();
+                    if (numSlotDestino != null)
+                    {
+                        // Le pasamos el número al hechizo que hay debajo
+                        numSlotDestino.OnDrop(eventData);
+                        break;
+                    }
+                }
+            }
+
+            // Volvemos a encender la colisión del marco
+            canvasGroup.blocksRaycasts = true;
         }
     }
 
     private bool ComprobarLimitesTablero(SpellSlot casillaBase)
     {
-        // Tu casilla se llama "SlotG_A1". Sacamos la "A" y el "1".
         string nombreCasilla = casillaBase.gameObject.name;
         string coordenada = nombreCasilla.Substring(nombreCasilla.LastIndexOf('_') + 1);
 
-        char filaBase = coordenada[0]; // 'A'
-        int colBase = int.Parse(coordenada.Substring(1)); // 1
+        char filaBase = coordenada[0];
+        int colBase = int.Parse(coordenada.Substring(1));
 
         Transform contenedorTablero = casillaBase.transform.parent;
 
-        // Comprobamos cada trozo de la forma del Tetris leyendo la lista de ObjetoBucle
         foreach (Vector2Int offset in objetoBucle.celdasQueOcupa)
         {
-            char targetFila = (char)(filaBase + offset.y); // Si offset Y es 1, 'A' pasa a ser 'B'
-            int targetCol = colBase + offset.x; // Si offset X es 1, 1 pasa a ser 2
+            char targetFila = (char)(filaBase + offset.y);
+            int targetCol = colBase + offset.x;
 
-            string sufijoBuscado = "_" + targetFila + targetCol; // Se convierte en "_A2"
+            string sufijoBuscado = "_" + targetFila + targetCol;
 
-            // Buscamos si existe una casilla que termine con ese nombre en tu ImgCuadri
             bool existe = false;
             foreach (Transform hijo in contenedorTablero)
             {
@@ -109,7 +149,6 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
                 }
             }
 
-            // Si el código no encuentra la casilla "_A7", significa que te sales del tablero
             if (!existe) return false;
         }
 
@@ -118,9 +157,19 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     private void AlinearConCasilla(SpellSlot casillaBase)
     {
-        // Truco matemático para alinear perfectamente la esquina Arriba-Izquierda 
-        // del marco negro con la esquina Arriba-Izquierda de la casilla, sin importar tus configuraciones de Pivot.
         RectTransform slotRect = casillaBase.GetComponent<RectTransform>();
+
+        int columnas = 0;
+        int filas = 0;
+        foreach (Vector2Int offset in objetoBucle.celdasQueOcupa)
+        {
+            if (offset.x > columnas) columnas = offset.x;
+            if (offset.y > filas) filas = offset.y;
+        }
+
+        float anchoTotal = slotRect.rect.width * (columnas + 1);
+        float altoTotal = slotRect.rect.height * (filas + 1);
+        rectTransform.sizeDelta = new Vector2(anchoTotal, altoTotal);
 
         Vector3[] slotEsquinas = new Vector3[4];
         slotRect.GetWorldCorners(slotEsquinas);
@@ -132,5 +181,42 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
         Vector3 diferencia = esquinaArribaIzquierdaCasilla - esquinaArribaIzquierdaMarco;
         transform.position += diferencia;
+    }
+
+    // =================================================================================
+    // EL "TALADRO" INTELIGENTE: ADAPTABLE A CUALQUIER RESOLUCIÓN
+    // =================================================================================
+    public bool IsRaycastLocationValid(Vector2 sp, Camera eventCamera)
+    {
+        if (rectTransform == null) return false;
+
+        Vector2 localPoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, sp, eventCamera, out localPoint);
+        Rect rect = rectTransform.rect;
+
+        // Calculamos un grosor muy fino basado en el tamaño real de tu pieza (aprox 10% del tamaño)
+        float grosorX = rect.width * 0.08f;
+        float grosorY = rect.height * 0.12f;
+
+        // 1. LAS LÍNEAS NEGRAS: Solo los bordes finitos de los extremos
+        bool tocandoLineaIzquierda = localPoint.x < rect.xMin + grosorX;
+        bool tocandoLineaDerecha = localPoint.x > rect.xMax - grosorX;
+        bool tocandoLineaAbajo = localPoint.y < rect.yMin + grosorY;
+        bool tocandoLineaArriba = localPoint.y > rect.yMax - grosorY;
+
+        if (tocandoLineaIzquierda || tocandoLineaDerecha || tocandoLineaAbajo || tocandoLineaArriba)
+        {
+            return true;
+        }
+
+        // 2. EL CUADRITO BLANCO: Restringimos su área estrictamente a su esquinita
+        float tamanoCuadro = rect.height * 0.30f;
+        if (localPoint.x < rect.xMin + tamanoCuadro && localPoint.y > rect.yMax - tamanoCuadro)
+        {
+            return true;
+        }
+
+        // 3. TODO LO DEMÁS (el 80% del centro): Es completamente invisible al ratón
+        return false;
     }
 }

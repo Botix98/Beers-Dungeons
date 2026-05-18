@@ -11,7 +11,11 @@ public class SpellSlot : MonoBehaviour, IDropHandler
         {
             GameObject dropped = eventData.pointerDrag;
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
-            draggableItem.parentAfterDrag = transform;
+
+            if (draggableItem != null)
+            {
+                draggableItem.parentAfterDrag = transform;
+            }
         }
     }
 }
