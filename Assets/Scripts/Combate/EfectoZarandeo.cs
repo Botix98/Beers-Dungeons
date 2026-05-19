@@ -5,10 +5,10 @@ using UnityEngine;
 public class EfectoZarandeo : MonoBehaviour
 {
     // Esta corrutina maneja la animación visual y sincroniza el daño
-    public IEnumerator EjecutarSacudida(float intensidad, int golpes, Action accionPorGolpe)
+    public IEnumerator EjecutarSacudida(float intensidad, int golpes, Action accionPorGolpe, float velocidadActual = 1f)
     {
         Vector3 posOriginal = transform.localPosition;
-        float tiempoPorGolpe = 0.3f; // Lo que tarda en hacer un salto completo (0.15s subir, 0.15s bajar)
+        float tiempoPorGolpe = 0.3f / velocidadActual; // Lo que tarda en hacer un salto completo (0.15s subir, 0.15s bajar)
 
         for (int i = 0; i < golpes; i++)
         {

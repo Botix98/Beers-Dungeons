@@ -9713,14 +9713,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4343931773589332372, guid: 4802b20aeed7b3949b69c1acf963b38c, type: 3}
-      propertyPath: celdasQueOcupa.Array.data[1].x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4343931773589332372, guid: 4802b20aeed7b3949b69c1acf963b38c, type: 3}
-      propertyPath: celdasQueOcupa.Array.data[1].y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
