@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
+using UnityEngine.SceneManagement;
 
 public class RunManager : MonoBehaviour
 {
@@ -159,6 +160,28 @@ public class RunManager : MonoBehaviour
         catch (System.Exception e)
         {
             Debug.LogError("Error al intentar actualizar las mejoras: " + e.Message);
+        }
+    }
+
+    public async void CerrarSesion()
+    {
+        PlayerPrefs.DeleteKey("token");
+        SceneManager.LoadScene("Login");
+    }
+
+    public async void EliminarCuenta()
+    {
+        string endpoint = $"/jugadores?id=eq.{Session.JugadorId}";
+
+        try
+        {
+            await SupabaseClient.Instance.Delete(endpoint);
+            Debug.Log("Cuenta eliminada correctamente.");
+            CerrarSesion();
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Error al eliminar la cuenta: " + e.Message);
         }
     }
 }
