@@ -163,7 +163,7 @@ public class RunManager : MonoBehaviour
         }
     }
 
-    public async void CerrarSesion()
+    public void CerrarSesion()
     {
         PlayerPrefs.DeleteKey("token");
         SceneManager.LoadScene("Login");

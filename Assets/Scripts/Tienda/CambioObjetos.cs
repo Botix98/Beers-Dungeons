@@ -7,6 +7,7 @@ public class CambioObjetos : MonoBehaviour
     [SerializeField] private GameObject[] itemPrefab;
     [SerializeField] private GameObject grid;
     [SerializeField] private TextMeshProUGUI monedas;
+    [SerializeField] private GameObject sinMonedas;
 
     [SerializeField] private int costeCambio = 50;
     [SerializeField] private TextMeshProUGUI costeCambioText;
@@ -29,6 +30,7 @@ public class CambioObjetos : MonoBehaviour
             objeto.GetComponent<ObjetoTienda>().infoFuncion = infoFuncion;
             objeto.GetComponent<ObjetoTienda>().infoPrecio = infoPrecio;
             objeto.GetComponent<ObjetoTienda>().monedas = monedas;
+            objeto.GetComponent<ObjetoTienda>().sinMonedas = sinMonedas;
             objeto.GetComponent<Button>().onClick.AddListener(objeto.GetComponent<ObjetoTienda>().comprarObjeto);
         }
     }
@@ -59,6 +61,7 @@ public class CambioObjetos : MonoBehaviour
             objeto.GetComponent<ObjetoTienda>().infoFuncion = infoFuncion;
             objeto.GetComponent<ObjetoTienda>().infoPrecio = infoPrecio;
             objeto.GetComponent<ObjetoTienda>().monedas = monedas;
+            objeto.GetComponent<ObjetoTienda>().sinMonedas = sinMonedas;
             objeto.GetComponent<Button>().onClick.AddListener(objeto.GetComponent<ObjetoTienda>().comprarObjeto);
         }
     }

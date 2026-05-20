@@ -15,6 +15,7 @@ public class Objeto : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
     [SerializeField] private TextMeshProUGUI infoNombre;
     [SerializeField] private TextMeshProUGUI infoFuncion;
     [SerializeField] private TextMeshProUGUI infoPrecio;
+    [SerializeField] private GameObject sinMonedas;
 
     public GameObject InfoObjeto { get => infoObjeto; set => infoObjeto = value; }
     public Image InfoSprite { get => infoSprite; set => infoSprite = value; }
@@ -65,6 +66,7 @@ public class Objeto : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
         else
         {
             Debug.Log("No tienes suficiente dinero");
+            sinMonedas.SetActive(true);
         }
     }
 

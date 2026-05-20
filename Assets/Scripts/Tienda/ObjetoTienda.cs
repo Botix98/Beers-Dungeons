@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ObjetoTienda : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] public TextMeshProUGUI monedas;
+    [SerializeField] public GameObject sinMonedas;
 
     [Header("Tablero Info Objeto")]
     [SerializeField] public GameObject infoObjeto;
@@ -25,12 +26,14 @@ public class ObjetoTienda : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             gameObject.SetActive(false);
             infoObjeto.SetActive(false);
+            Bridge.Instance.inventarioUsos[this.ToString().Split('(')[0]] = Bridge.Instance.inventarioUsos[this.ToString().Split('(')[0]] + 1;
             monedas.text = (int.Parse(monedas.text) - precio).ToString();
             PlayerPrefs.SetInt("monedas", int.Parse(monedas.text) - precio);
             Debug.Log($"Objeto comprado: {nombre}");
         }
         else
         {
+            sinMonedas.SetActive(true);
             //Aqui se puede hacer alguna animacion o indicarle al usuario que no tiene dinero
         }
     }
@@ -48,6 +51,10 @@ public class ObjetoTienda : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             this.gameObject.SetActive(false);
 
             Debug.Log("Vida recuperada al maximo");
+        }
+        else
+        {
+            sinMonedas.SetActive(true);
         }
     }
 

@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Esto habra que quitarlo
-        PlayerPrefs.SetInt("monedas", 1000);
+        PlayerPrefs.SetInt("monedas", 1500);
 
         if (nombreEscena == "Juego")
         {

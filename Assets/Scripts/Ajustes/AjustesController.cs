@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class AjustesController : MonoBehaviour
 {
     [SerializeField] private Slider sliderVolumen;
+    [SerializeField] private GameObject creditos;
 
     private void OnEnable()
     {
@@ -39,6 +40,11 @@ public class AjustesController : MonoBehaviour
 
     public void Creditos()
     {
-        
+        creditos.SetActive(true);
+    }
+
+    public void SalirCreditos()
+    {
+        creditos.SetActive(false);
     }
 }

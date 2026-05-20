@@ -19,7 +19,7 @@ public class Bridge : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); // Evita duplicados si vuelve a pasar por aquí
+            Destroy(gameObject); // Evita duplicados si vuelve a pasar por aquï¿½
         }
     }
 
@@ -70,7 +70,7 @@ public class Bridge : MonoBehaviour
         }
     }
 
-    // Detecta cuándo se ha cargado una nueva escena y aplica los usos
+    // Detecta cuï¿½ndo se ha cargado una nueva escena y aplica los usos
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         CargarUsos();
