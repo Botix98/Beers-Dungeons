@@ -9,9 +9,13 @@ public class GameManager : MonoBehaviour
     public void Cargar(string nombreEscena)
     {
 
-        if (Bridge.Instance != null)
+        // Solo guarda los usos si estas saliendo de la escena de Juego/Combate
+        if (SceneManager.GetActiveScene().name == "Juego")
         {
-            Bridge.Instance.GuardarUsos();
+            if (Bridge.Instance != null)
+            {
+                Bridge.Instance.GuardarUsos();
+            }
         }
 
         // Esto habra que quitarlo
