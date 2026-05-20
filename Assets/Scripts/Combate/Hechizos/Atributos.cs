@@ -25,16 +25,10 @@ public class Atributos : MonoBehaviour
     public int usosActuales;
     public TMP_Text textoUsos;
 
-    /// <summary>
-    /// Llama a este m�todo cuando crees el hechizo en el tablero o inventario.
-    /// </summary>
-    /// <param name="usosGuardados">Pasa los usos que ten�a el jugador. Si es un hechizo nuevo, no pases nada (usar� -1).</param>
-
-    // de momento pongo el start para las pruebas pero hay que quitarlo para que no se esten reseteando los usos cada vez que se recarga la escena
-    protected virtual void Start()
-    {
-        ConfigurarUsos();
-    }
+    //protected virtual void Start()
+    //{
+    //    ConfigurarUsos();
+    //}
 
     public void ConfigurarUsos(int usosGuardados = -1)
     {

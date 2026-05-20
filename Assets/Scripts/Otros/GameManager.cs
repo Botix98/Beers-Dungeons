@@ -8,6 +8,12 @@ public class GameManager : MonoBehaviour
 
     public void Cargar(string nombreEscena)
     {
+
+        if (Bridge.Instance != null)
+        {
+            Bridge.Instance.GuardarUsos();
+        }
+
         // Esto habra que quitarlo
         PlayerPrefs.SetInt("monedas", 1000);
 

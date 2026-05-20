@@ -52,7 +52,11 @@ public class Enemigo : MonoBehaviour
         ActualizarUI();
 
         if (cantidad > 0) AplicarEstado(estadoAtaque);
-        if (vidaActual == 0) Debug.Log("�Enemigo derrotado!");
+        if (vidaActual == 0) 
+        {
+            Debug.Log("�Enemigo derrotado!");
+            if (EjecutorTablero.Instance != null) EjecutorTablero.Instance.MostrarVictoria();
+        }
     }
 
     public void AplicarEstado(elementos nuevoEstado)

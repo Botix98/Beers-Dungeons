@@ -13,6 +13,10 @@ public class EjecutorTablero : MonoBehaviour
         if (Instance == null) Instance = this;
     }
 
+    [Header("Pantallas de Fin de Partida")]
+    public GameObject panelVictoria;
+    public GameObject panelDerrota;
+
     [Header("Referencias de la UI")]
     public Transform contenedorTablero;
     public Transform contenedorInventario;
@@ -587,5 +591,26 @@ public class EjecutorTablero : MonoBehaviour
             Color c = coloresOriginales[i];
             todosLosTextos[i].color = new Color(c.r, c.g, c.b, 1f);
         }
+    }
+
+    // ===================================================================================
+    // FIN DE PARTIDA
+    // ===================================================================================
+    public void MostrarVictoria()
+    {
+        // Detiene instantáneamente el for, los bucles y las esperas de tiempo
+        StopAllCoroutines();
+        ejecutando = false;
+
+        if (panelVictoria != null) panelVictoria.SetActive(true);
+    }
+
+    public void MostrarDerrota()
+    {
+        // Detiene instantáneamente todo
+        StopAllCoroutines();
+        ejecutando = false;
+
+        if (panelDerrota != null) panelDerrota.SetActive(true);
     }
 }

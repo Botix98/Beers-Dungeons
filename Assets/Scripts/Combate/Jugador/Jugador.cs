@@ -65,7 +65,12 @@ public class Jugador : MonoBehaviour
             AplicarEstado(estadoAtaque);
         }
 
-        if (vidaActual == 0) Debug.Log("El jugador ha muerto. Fin de la partida.");
+        if (vidaActual == 0)
+        {
+            Debug.Log("El jugador ha muerto. Fin de la partida.");
+            if (EjecutorTablero.Instance != null) EjecutorTablero.Instance.MostrarDerrota();
+            // Destroy(Bridge.Instance.gameObject);
+        }
     }
 
     public void AplicarEstado(elementos nuevoEstado)
