@@ -26,6 +26,10 @@ public class EjecutorTablero : MonoBehaviour
     public TMP_Text txtVictoria;
     public TMP_Text txtDerrota;
 
+    [Header("Sonidos de Fin de Partida")]
+    public AudioClip sonidoVictoria;
+    public AudioClip sonidoDerrota;
+
     [Header("Referencias de la UI")]
     public Transform contenedorTablero;
     public Transform contenedorInventario;
@@ -614,6 +618,7 @@ public class EjecutorTablero : MonoBehaviour
     {
         StopAllCoroutines();
         ejecutando = false;
+        if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(sonidoVictoria);
 
         int pisoActual = PlayerPrefs.GetInt("PisoActual", 1);
         int monedasActuales = PlayerPrefs.GetInt("monedas", 0);
@@ -636,6 +641,7 @@ public class EjecutorTablero : MonoBehaviour
         // Detiene instantaneamente todo
         StopAllCoroutines();
         ejecutando = false;
+        if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(sonidoDerrota);
 
         // Calculamos las Anécdotas (1 por cada piso superado)
         int pisoActual = PlayerPrefs.GetInt("PisoActual", 1);

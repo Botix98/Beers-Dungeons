@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Configuración de Música")]
     public AudioSource audioSource;
+    public AudioSource sfxSource;
     public List<SceneMusic> musicList;
 
     private void Awake()
@@ -38,12 +39,10 @@ public class AudioManager : MonoBehaviour
 
     private void PlayMusicForScene(string sceneName)
     {
-        
         AudioClip clip = musicList.Find(m => m.sceneName == sceneName)?.musicClip;
 
         if (clip != null)
         {
-            
             if (audioSource.clip == clip && audioSource.isPlaying) return;
 
             audioSource.clip = clip;
@@ -52,9 +51,15 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Debug.Log($"No hay música asignada para la escena: {sceneName}");
-            
             audioSource.Stop();
+        }
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        if (clip != null && sfxSource != null)
+        {
+            sfxSource.PlayOneShot(clip);
         }
     }
 }
