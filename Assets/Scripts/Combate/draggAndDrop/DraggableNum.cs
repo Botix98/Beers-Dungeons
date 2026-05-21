@@ -23,7 +23,11 @@ public class DraggableNum : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         Debug.Log("Empezando a arrastrar número");
 
         parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
+
+        Canvas canvasPrincipal = GetComponentInParent<Canvas>();
+        if (canvasPrincipal == null) canvasPrincipal = FindObjectOfType<Canvas>();
+
+        transform.SetParent(canvasPrincipal.transform, true);
         transform.SetAsLastSibling();
 
         canvasGroup.blocksRaycasts = false;
@@ -31,7 +35,15 @@ public class DraggableNum : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = Input.mousePosition;
+        RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            GetComponentInParent<Canvas>().transform as RectTransform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector3 worldPoint
+        );
+
+        worldPoint.z = 0;
+        transform.position = worldPoint;
     }
 
     public void OnEndDrag(PointerEventData eventData)

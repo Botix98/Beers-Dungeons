@@ -6,23 +6,28 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject canvasJuego;
     [SerializeField] private GameObject canvasAjustes;
 
+
+    public void IniciarNuevaPartida()
+    {
+        PlayerPrefs.SetInt("PisoActual", 0); // Reiniciamos el piso
+        PlayerPrefs.SetInt("monedas", 0); // Dinero inicial para arrancar
+        Cargar("Juego");
+    }
     public void Cargar(string nombreEscena)
     {
-
-        // Solo guarda los usos si estas saliendo de la escena de Juego/Combate
         if (SceneManager.GetActiveScene().name == "Juego")
         {
-            if (Bridge.Instance != null)
-            {
-                Bridge.Instance.GuardarUsos();
-            }
+            if (Bridge.Instance != null) Bridge.Instance.GuardarUsos();
         }
 
-        // Esto habra que quitarlo
-        PlayerPrefs.SetInt("monedas", 1500);
-
+        // Lógica al entrar al combate
         if (nombreEscena == "Juego")
         {
+            // Sumamos 1 al piso actual
+            int pisoActual = PlayerPrefs.GetInt("PisoActual", 0);
+            pisoActual++;
+            PlayerPrefs.SetInt("PisoActual", pisoActual);
+
             int vidaMaxima = RunManager.Instance.mejorasJugador[1].desbloqueada ? (100 + (25 * RunManager.Instance.mejorasJugador[1].nivelActual)) : 100;
             PlayerPrefs.SetInt("vidaMax", vidaMaxima);
             PlayerPrefs.SetInt("vidaActual", vidaMaxima);
@@ -31,6 +36,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(nombreEscena);
     }
+
     public void Salir()
     {
         Application.Quit();

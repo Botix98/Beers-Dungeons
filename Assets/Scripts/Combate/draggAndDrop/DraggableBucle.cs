@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI; // <--- AÑADIDO: Necesario para perforar la UI
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup))]
-// <--- AÑADIDO: ICanvasRaycastFilter al final de esta línea
 public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, ICanvasRaycastFilter
 {
     [HideInInspector] public Transform parentOriginal;
@@ -26,14 +25,28 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         parentOriginal = transform.parent;
         posicionOriginal = transform.position;
 
-        transform.SetParent(transform.root);
+        Canvas canvasPrincipal = GetComponentInParent<Canvas>();
+        if (canvasPrincipal == null) canvasPrincipal = FindObjectOfType<Canvas>();
+
+        transform.SetParent(canvasPrincipal.transform, true);
         transform.SetAsLastSibling();
+
         canvasGroup.blocksRaycasts = false;
+
+        AjustarTamanoReal();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = Input.mousePosition;
+        RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            GetComponentInParent<Canvas>().transform as RectTransform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector3 worldPoint
+        );
+
+        worldPoint.z = 0;
+        transform.position = worldPoint;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -54,7 +67,7 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             }
         }
 
-        if (casillaBase != null && ComprobarLimitesTablero(casillaBase))
+        if (casillaBase != null && ComprobarLimitesTablero(casillaBase) && !HayOtroBucleEnCamino(casillaBase))
         {
             Transform contenedorTablero = casillaBase.transform.parent;
             Transform padreSinGrid = contenedorTablero.parent;
@@ -77,11 +90,10 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         if (dropped == null) return;
 
         DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
-        DraggableNum draggableNum = dropped.GetComponent<DraggableNum>(); // Ahora también detecta números
+        DraggableNum draggableNum = dropped.GetComponent<DraggableNum>();
 
         if (draggableItem != null || draggableNum != null)
         {
-            // Apagamos la colisión temporalmente para ver qué hay detrás
             canvasGroup.blocksRaycasts = false;
 
             PointerEventData pointerData = new PointerEventData(EventSystem.current)
@@ -94,7 +106,7 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
             foreach (RaycastResult res in resultados)
             {
-                // Si lo que soltaron fue un HECHIZO
+                // Si lo que soltaron fue un hechizo
                 if (draggableItem != null)
                 {
                     SpellSlot slot = res.gameObject.GetComponent<SpellSlot>();
@@ -104,20 +116,19 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
                         break;
                     }
                 }
-                // Si lo que soltaron fue un NÚMERO
+                // Si lo que soltaron fue un numero
                 else if (draggableNum != null)
                 {
                     NumSlot numSlotDestino = res.gameObject.GetComponent<NumSlot>();
                     if (numSlotDestino != null)
                     {
-                        // Le pasamos el número al hechizo que hay debajo
+                        // Le pasa el número al hechizo que hay debajo
                         numSlotDestino.OnDrop(eventData);
                         break;
                     }
                 }
             }
 
-            // Volvemos a encender la colisión del marco
             canvasGroup.blocksRaycasts = true;
         }
     }
@@ -155,9 +166,12 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         return true;
     }
 
-    private void AlinearConCasilla(SpellSlot casillaBase)
+    private void AjustarTamanoReal()
     {
-        RectTransform slotRect = casillaBase.GetComponent<RectTransform>();
+        SpellSlot slotMuestra = FindObjectOfType<SpellSlot>();
+        if (slotMuestra == null) return;
+
+        RectTransform slotRect = slotMuestra.GetComponent<RectTransform>();
 
         int columnas = 0;
         int filas = 0;
@@ -170,6 +184,13 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         float anchoTotal = slotRect.rect.width * (columnas + 1);
         float altoTotal = slotRect.rect.height * (filas + 1);
         rectTransform.sizeDelta = new Vector2(anchoTotal, altoTotal);
+    }
+
+    private void AlinearConCasilla(SpellSlot casillaBase)
+    {
+        AjustarTamanoReal();
+
+        RectTransform slotRect = casillaBase.GetComponent<RectTransform>();
 
         Vector3[] slotEsquinas = new Vector3[4];
         slotRect.GetWorldCorners(slotEsquinas);
@@ -183,9 +204,6 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         transform.position += diferencia;
     }
 
-    // =================================================================================
-    // EL "TALADRO" INTELIGENTE: ADAPTABLE A CUALQUIER RESOLUCIÓN
-    // =================================================================================
     public bool IsRaycastLocationValid(Vector2 sp, Camera eventCamera)
     {
         if (rectTransform == null) return false;
@@ -194,11 +212,9 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, sp, eventCamera, out localPoint);
         Rect rect = rectTransform.rect;
 
-        // Calculamos un grosor muy fino basado en el tamaño real de tu pieza (aprox 10% del tamaño)
         float grosorX = rect.width * 0.08f;
         float grosorY = rect.height * 0.12f;
 
-        // 1. LAS LÍNEAS NEGRAS: Solo los bordes finitos de los extremos
         bool tocandoLineaIzquierda = localPoint.x < rect.xMin + grosorX;
         bool tocandoLineaDerecha = localPoint.x > rect.xMax - grosorX;
         bool tocandoLineaAbajo = localPoint.y < rect.yMin + grosorY;
@@ -209,14 +225,69 @@ public class DraggableBucle : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             return true;
         }
 
-        // 2. EL CUADRITO BLANCO: Restringimos su área estrictamente a su esquinita
         float tamanoCuadro = rect.height * 0.30f;
         if (localPoint.x < rect.xMin + tamanoCuadro && localPoint.y > rect.yMax - tamanoCuadro)
         {
             return true;
         }
 
-        // 3. TODO LO DEMÁS (el 80% del centro): Es completamente invisible al ratón
+        return false;
+    }
+
+    private bool HayOtroBucleEnCamino(SpellSlot casillaBase)
+    {
+        // Obtener todos los bucles que ya están puestos en el tablero
+        Transform contenedorTablero = casillaBase.transform.parent;
+        Transform padreSinGrid = contenedorTablero.parent;
+        ObjetoBucle[] todosLosBucles = padreSinGrid.GetComponentsInChildren<ObjetoBucle>();
+
+        // Encontrar los slots exactos que este nuevo bucle va a ocupar
+        string nombreCasilla = casillaBase.gameObject.name;
+        string coordenada = nombreCasilla.Substring(nombreCasilla.LastIndexOf('_') + 1);
+        char filaBase = coordenada[0];
+        int colBase = int.Parse(coordenada.Substring(1));
+
+        List<Transform> slotsDestino = new List<Transform>();
+
+        foreach (Vector2Int offset in objetoBucle.celdasQueOcupa)
+        {
+            char targetFila = (char)(filaBase + offset.y);
+            int targetCol = colBase + offset.x;
+            string sufijoBuscado = "_" + targetFila + targetCol;
+
+            foreach (Transform hijo in contenedorTablero)
+            {
+                if (hijo.name.EndsWith(sufijoBuscado))
+                {
+                    slotsDestino.Add(hijo);
+                    break;
+                }
+            }
+        }
+
+        // Comprueba si el centro de alguno de estos slots cae dentro de OTRA caja de bucle
+        foreach (Transform slot in slotsDestino)
+        {
+            Vector3[] slotCorners = new Vector3[4];
+            slot.GetComponent<RectTransform>().GetWorldCorners(slotCorners);
+            Vector3 slotCenter = (slotCorners[0] + slotCorners[2]) / 2f;
+
+            foreach (ObjetoBucle otroBucle in todosLosBucles)
+            {
+                if (otroBucle == this.objetoBucle) continue;
+
+                Vector3[] bCorners = new Vector3[4];
+                otroBucle.GetComponent<RectTransform>().GetWorldCorners(bCorners);
+
+                // Si el centro de la casilla choca con el marco de otro bucle
+                if (slotCenter.x >= bCorners[0].x && slotCenter.x <= bCorners[2].x &&
+                    slotCenter.y >= bCorners[0].y && slotCenter.y <= bCorners[1].y)
+                {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 }

@@ -29,6 +29,15 @@ public class Enemigo : MonoBehaviour
 
     private void Start()
     {
+        int pisoActual = PlayerPrefs.GetInt("PisoActual", 1);
+
+        // Vida base 250, aumenta 35% por piso
+        vidaMaxima = Mathf.RoundToInt(250f * Mathf.Pow(1.35f, pisoActual - 1));
+
+        // Daño se queda en su base, aumenta 20% por piso
+        danoMinimo = Mathf.RoundToInt(5f * Mathf.Pow(1.20f, pisoActual - 1));
+        danoMaximo = Mathf.RoundToInt(10f * Mathf.Pow(1.20f, pisoActual - 1));
+
         vidaActual = vidaMaxima;
         ActualizarUI();
     }

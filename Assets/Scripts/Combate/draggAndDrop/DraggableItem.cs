@@ -34,8 +34,13 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         puedeArrastrar = true;
         Debug.Log("Begin drag");
         parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
+
+        Canvas canvasPrincipal = GetComponentInParent<Canvas>();
+        if (canvasPrincipal == null) canvasPrincipal = FindObjectOfType<Canvas>();
+
+        transform.SetParent(canvasPrincipal.transform, true);
         transform.SetAsLastSibling();
+
         image.raycastTarget = false;
     }
 
@@ -44,7 +49,15 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (!puedeArrastrar) return;
 
         Debug.Log("Dragging");
-        transform.position = Input.mousePosition;
+        RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            GetComponentInParent<Canvas>().transform as RectTransform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector3 worldPoint
+        );
+
+        worldPoint.z = 0;
+        transform.position = worldPoint;
     }
 
     public void OnEndDrag(PointerEventData eventData)

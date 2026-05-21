@@ -13,9 +13,18 @@ public class EjecutorTablero : MonoBehaviour
         if (Instance == null) Instance = this;
     }
 
+    [Header("UI e Información del Piso")]
+    public TMP_Text txtPiso;
+    public TMP_Text txtRecompensa;
+    public int oroBasePorVictoria = 1000;
+
+    private int oroQueVoyAGanar;
+
     [Header("Pantallas de Fin de Partida")]
     public GameObject panelVictoria;
     public GameObject panelDerrota;
+    public TMP_Text txtVictoria;
+    public TMP_Text txtDerrota;
 
     [Header("Referencias de la UI")]
     public Transform contenedorTablero;
@@ -42,7 +51,12 @@ public class EjecutorTablero : MonoBehaviour
 
     private void Start()
     {
-        // Genera la intención del primer turno nada más arrancar el juego
+        int pisoActual = PlayerPrefs.GetInt("PisoActual", 1);
+        if (txtPiso != null) txtPiso.text = "Piso: " + pisoActual;
+
+        oroQueVoyAGanar = Mathf.RoundToInt(oroBasePorVictoria * Mathf.Pow(1.25f, pisoActual - 1));
+        if (txtRecompensa != null) txtRecompensa.text = oroQueVoyAGanar.ToString();
+
         if (enemigoActual != null)
         {
             enemigoActual.GenerarIntencion();
@@ -598,19 +612,54 @@ public class EjecutorTablero : MonoBehaviour
     // ===================================================================================
     public void MostrarVictoria()
     {
-        // Detiene instantáneamente el for, los bucles y las esperas de tiempo
         StopAllCoroutines();
         ejecutando = false;
+
+        int pisoActual = PlayerPrefs.GetInt("PisoActual", 1);
+        int monedasActuales = PlayerPrefs.GetInt("monedas", 0);
+
+        PlayerPrefs.SetInt("monedas", monedasActuales + oroQueVoyAGanar);
+
+        if (txtVictoria != null)
+        {
+            int siguientePiso = pisoActual + 1;
+            txtVictoria.text = $"¡Lo lograste! Obtuviste {oroQueVoyAGanar} de oro, ya puedes avanzar al piso {siguientePiso}; no olvides comprar en la tienda. :)";
+        }
+
+        Debug.Log($"¡Piso {pisoActual} superado! Ganaste {oroQueVoyAGanar} monedas.");
 
         if (panelVictoria != null) panelVictoria.SetActive(true);
     }
 
     public void MostrarDerrota()
     {
-        // Detiene instantáneamente todo
+        // Detiene instantaneamente todo
         StopAllCoroutines();
         ejecutando = false;
 
+        // Calculamos las Anécdotas (1 por cada piso superado)
+        int pisoActual = PlayerPrefs.GetInt("PisoActual", 1);
+        int anecdotasGanadas = Mathf.Max(0, pisoActual - 1);
+
+        // Se las sumamos al jugador de forma permanente usando tu RunManager
+        if (RunManager.Instance != null && RunManager.Instance.jugador != null)
+        {
+            RunManager.Instance.jugador.monedas += anecdotasGanadas;
+            RunManager.Instance.ActualizarMonedasJugador();
+        }
+
+        // Actualizamos el texto gigante del pergamino
+        if (txtDerrota != null)
+        {
+            txtDerrota.text = $"Hola. :)\n" +
+                $"Si lees esto, que sepas que te desmayaste por un GOBLIN, esa criatura del demonio te intentó robar tu preciada bola de cristal >:\\ , pero un humilde servidor te salvó la vida, arrastrando tu moribundo cuerpo por la mazmorra hasta la salida, salvándote la vida, por pura caridad. De nada :).\n\n" +
+                $"Durante nuestra incursión hasta el piso {pisoActual} de la mazmorra conseguiste muchos objetos, así que te los guardé para que no los pierdas, ya te los devolveré algún día.\n\n" +
+                $"Conseguiste un total de {anecdotasGanadas} logros durante la incursión, no dudes en contar tus hazañas en la taberna, con suerte te invitan a algún trago y, ya que estamos, pues me compartes un poquito, ¿no?\n\n" +
+                $"Atentamente, tu querido compañero.\n" +
+                $"P.D. Si te vuelves a aventurar en la mazmorra, no dudes en avisarme, jeje.";
+        }
+
+        // Mostramos el panel de derrota
         if (panelDerrota != null) panelDerrota.SetActive(true);
     }
 }
