@@ -3835,7 +3835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: precio
-      value: 200
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: idMejora
@@ -3867,7 +3867,7 @@ PrefabInstance:
       objectReference: {fileID: 393720422}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: descripcion
-      value: Aumento de vida maxima
+      value: "Aumenta la vida m\xE1xima del jugador"
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: infoFuncion
@@ -5709,11 +5709,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: nombre
-      value: tablon
+      value: "Tabl\xF3n"
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: precio
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: idMejora
@@ -5745,7 +5745,8 @@ PrefabInstance:
       objectReference: {fileID: 393720422}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: descripcion
-      value: Aumento de tablon
+      value: "Debloquea nuevas filas en el tabl\xF3n para lanzar m\xE1s hechizos
+        por ronda"
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: infoFuncion
@@ -6790,11 +6791,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: nombre
-      value: ifs
+      value: Condicionales
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: precio
-      value: 200
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: idMejora
@@ -6826,7 +6827,7 @@ PrefabInstance:
       objectReference: {fileID: 393720422}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: descripcion
-      value: Aumento multiplicador IF
+      value: "Aumenta el factor de multiplicaci\xF3n de los condicionales"
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: infoFuncion
@@ -7427,11 +7428,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: nombre
-      value: mochila
+      value: Mochila
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: precio
-      value: 50
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: idMejora
@@ -7463,7 +7464,7 @@ PrefabInstance:
       objectReference: {fileID: 393720422}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: descripcion
-      value: Aumento de mochila
+      value: "Aumenta la cantidad  m\xE1xima de hechizos que puede llevar"
       objectReference: {fileID: 0}
     - target: {fileID: 3318442135842093185, guid: c8dc532cd4e1d55439f55688fc53880d, type: 3}
       propertyPath: infoFuncion
